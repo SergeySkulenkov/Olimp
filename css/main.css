@@ -1,0 +1,346 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url(../fonts/roboto/Roboto-Regular.ttf);
+
+}
+
+html, body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+
+}
+body{
+  background-color: #213060;
+  font-family: 'Roboto' , sans-serif;
+}
+.left{
+  height: 100%;
+  width: 15%;
+  float: left;
+}
+
+.logo{
+  display: block;
+  margin-top:80px;
+  margin-left: 40px;
+  outline: none;
+}
+.left a{
+  border: none;
+}
+.menu{
+  margin-top: 40px;
+}
+.menu a{
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  height: 56px;
+  font-size: 20px;
+  text-decoration: none;
+}
+.ico{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.text{
+  width: 100px;
+  flex-grow: 1;
+}
+#zadaniya .ico {
+  background: #ffffff url('../images/zadaniya.png') no-repeat center center;
+}
+
+#otvet .ico {
+  background: #ffffff url('../images/otveti.png') no-repeat center center;
+  background-size: 70%;
+
+}
+#vopros .ico {
+  background: #ffffff url('../images/zadat_vopros.png') no-repeat center center;
+}
+#profile .ico {
+  background: #ffffff url('../images/profile.png') no-repeat center center;
+}
+
+.menu a.active{
+  background: #ffffff;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color:  #213060;
+}
+#otvet.active .ico{
+  background: #213060 url('../images/otveti_active.png') no-repeat center center;
+  background-size: 70%;
+
+}
+#zadaniya.active .ico{
+  background: #213060 url('../images/zadaniya_active.png') no-repeat center center;
+
+}
+#vopros.active .ico{
+  background: #213060 url('../images/zadat_vopros_active.png') no-repeat center center;
+
+}
+#profile.active .ico{
+  background: #213060 url('../images/profile_active.png') no-repeat center center;
+
+}
+
+
+
+
+.right{
+  float: right;
+  width: 85%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+
+}
+.topBlock{
+  height: 80px;
+
+}
+.container{
+  height: 300px;
+  flex-grow: 1;
+
+
+}
+.titleBlock{
+  background-color: #eaeaea;
+  border-top-left-radius: 10px;
+  padding-left: 90px;
+  padding-top: 15px;
+  box-sizing: border-box;
+  height: 60px;
+  font-size: 24px;
+  color: #000000;
+}
+.contentBlock{
+  border-top-left-radius: 10px;
+  /*
+  -webkit-box-shadow: -3px 4px 9px 0px rgba(34, 60, 80, 0.4);
+  -moz-box-shadow: -3px 4px 9px 0px rgba(34, 60, 80, 0.4);
+  box-shadow: -3px 4px 9px 0px rgba(0, 0, 0, 0.4); */
+  background-color: #ffffff;
+  height: 100%;
+}
+.mainContent{
+    max-width: 1000px;
+}
+.mainContent h2{
+    margin-left: 90px;
+    font-size: 24px;
+}
+.mainContent p{
+    font-size: 18px;
+    margin-left: 90px;
+    margin-top: 20px;
+}
+a.download{
+    font-size: 20px;
+    color: #293042;
+    display: block;
+    box-sizing: border-box;
+    height: 50px;
+    width: 300px;
+    padding-left: 60px;
+    padding-top: 10px;
+    background: url('../images/download.png') no-repeat left center;
+    background-size: contain;
+    text-decoration: none;
+
+}
+a.download:hover{
+    color: #3766bc;
+}
+
+
+.inputblock input {
+  width: 400px;
+  height: 44px;
+  background-color: #d8d8d8;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-size: 12pt;
+  color: #333;
+  position: absolute;
+  z-index: 1050;
+
+}
+
+.inputblock input:focus {
+  border-color: #c8c8c8;
+  background-color: #e8e8e8;
+
+}
+
+.errorInputBlock {
+  width: 400px;
+  height: 20px;
+  position: absolute;
+  bottom: 0px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.inputblock {
+  border-radius: 5px;
+  position: relative;
+  height: 47px;
+}
+
+.inputblock input::placeholder {
+  color: #757474;
+  font-size: 12pt;
+}
+
+.errorInputBlock.Error {
+  background: #ed6203;
+
+}
+
+.margin30 {
+  margin-bottom: 30px;
+}
+
+.margin30top {
+  margin-top: 30px;
+}
+
+p.registr {
+  color: #C8CECE;
+  font-family: 'Roboto-Italic', sans-serif;
+  font-size: 9pt;
+  margin: 5px;
+  height: 11pt;
+
+}
+
+p.registr span {
+  display: inline;
+}
+
+p span {
+  display: none;
+}
+
+p.rep.Error {
+  font-size: 9pt;
+
+}
+
+p.Error {
+  color: #ed6203;
+  font-family: 'Roboto-Italic', sans-serif;
+  font-size: 11pt;
+  margin: 5px;
+  height: 11pt;
+}
+
+p.registr.Error {
+  color: #ed6203;
+  font-family: 'Roboto-Italic', sans-serif;
+  font-size: 9pt;
+  margin: 5px;
+  height: 11pt;
+}
+
+p.Error span {
+  display: inline;
+}
+
+.login a {
+  color: #afafaf;
+  font-size: 12pt;
+  text-decoration: none;
+}
+
+.login a:hover {
+  text-decoration: underline;
+}
+
+.buttonblock {
+  height: 60px;
+  width: 400px;
+  margin-top: 10px;
+  border-bottom: 1px solid #bfbfbf;
+
+}
+
+.left-buttonblock {
+  float: left;
+  width: 50%;
+  text-align: center;
+  padding-top: 15px;
+
+}
+
+.right-buttonblock {
+  float: right;
+  width: 50%;
+  text-align: center;
+
+}
+
+.bottom-buttonblock {
+  clear: both;
+  text-align: center;
+  width: 400px;
+  margin-top: 20px;
+}
+
+.right-buttonblock input {
+  color: #fff;
+  background-color: #2c3c89;
+  border: none;
+  border-radius: 5px;
+  height: 45px;
+  width: 175px;
+  font-size: 12pt;
+  text-transform: uppercase;
+}
+
+.right-buttonblock input:hover {
+  background-color: #4857a1;
+  cursor: pointer;
+
+}
+
+
+.register-buttonblock {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.register-buttonblock .right-buttonblock {
+  width: 400px;
+}
+
+.register-buttonblock .right-buttonblock input {
+  color: #fff;
+  background-color: #2c3c89;
+  border: none;
+  border-radius: 5px;
+  height: 45px;
+  width: 100%;
+  font-size: 12pt;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.register-buttonblock .right-buttonblock input:hover {
+  background-color: #4857a1;
+}

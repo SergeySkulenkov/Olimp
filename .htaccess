@@ -1,0 +1,3 @@
+#DirectoryIndex hello.html
+ErrorDocument 404 /olimp/404.html
+Options -Indexes
