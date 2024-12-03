@@ -36,7 +36,12 @@ if(!$res){
 
           </div>
           <div class="mainContent">
-              <?= $page['content'];?>
+              <?php if($_GET['id']==2){
+                 include(ROOT_PATH.'tmpl/answer.php');
+              }else{
+                 echo  $page['content'];
+              }
+              ?>
 
           </div>
 

@@ -157,5 +157,19 @@ class Model{
       $sql = "SELECT * FROM `pages` WHERE alias = '".$alias."'";
       return  mysqli_fetch_assoc($this->simpleQuery($sql));
   }
+  public function getAnswerContent(){
+      $sql = "SELECT * FROM `user_answer` WHERE tur_id = 1 and user_id = 1 order by file_date";
+      $rows = $this->querySelectRows($sql);
+
+
+      foreach ($rows as $key => $value) {
+          $query  = "SELECT * FROM `jury_comments` WHERE answer_id = ".$value['id']." order by date_comment ";
+          $r = $this->querySelectRows($query);
+          $rows[$key]['jury_comments'] = $r;
+
+      }
+
+      return $rows;
+  }
 }
 ?>

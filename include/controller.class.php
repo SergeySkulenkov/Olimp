@@ -37,7 +37,8 @@ class Controller{
           return $this->model->getPageContent("tasks");
       }
       else if($this->model->pageID == 2){
-          return array('title'=>'', 'content'=>'');
+          $content = $this->model->getAnswerContent();
+          return array('title'=>'Ответы', 'content'=>$content);
       }
       else if($this->model->pageID == 4){
           $content = file_get_contents(ROOT_PATH.'tmpl/profile.php');
