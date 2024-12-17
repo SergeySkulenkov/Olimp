@@ -18,6 +18,9 @@ if(!$res){
     <meta charset="utf-8">
     <title><?= $page['title'];?></title>
     <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js">
+
+    </script>
   </head>
   <body>
     <div class="left">
@@ -36,7 +39,7 @@ if(!$res){
 
           </div>
           <div class="mainContent">
-              <?php if($_GET['id']==2){
+              <?php if(isset($_GET['id']) && $_GET['id']==2){
                  include(ROOT_PATH.'tmpl/answer.php');
               }else{
                  echo  $page['content'];
