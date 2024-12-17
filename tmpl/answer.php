@@ -27,7 +27,7 @@ foreach ($page['content'] as $key => $value) {
          <div class="jury_comments">
              <div class="jury_comments_name_date">
                  <div class="name">
-                     Коментарий жюри
+                     Комментарий жюри
 
                  </div>
                  <div class="date">
@@ -47,9 +47,47 @@ foreach ($page['content'] as $key => $value) {
           }
     }
     ?>
+
 </div>
 
 
 <?php
 }
  ?>
+ <div class="downloadButtonBlock">
+     <div class="ico"></div>
+     <button type="button" class="downloadButton" name="button">Загрузить</button>
+
+
+ </div>
+
+
+
+<div class="window">
+    <div class="windowTitle">
+        <div class="windowText">
+            Загрузка файла
+        </div>
+        <div class="windowClose">
+
+        </div>
+    </div>
+    <div class="windowContent">
+        <p>Формат файла.</p>
+        <form class="" action="upload.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="userfile" value="">
+            <div class="uploadButton">
+                <input type="submit" name="" value="Загрузить файл на сервер">
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+</div>
+<div class="shadow"></div>
+<script type="text/javascript" src="js/upload.js">
+
+</script>

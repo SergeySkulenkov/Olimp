@@ -3,7 +3,16 @@
   src: url(../fonts/roboto/Roboto-Regular.ttf);
 
 }
+@font-face {
+  font-family: 'Roboto-Italic';
+  src: url(../fonts/roboto/Roboto-italic.ttf);
 
+}
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url(../fonts/roboto/Roboto-Medium.ttf);
+
+}
 html, body {
   height: 100%;
   margin: 0px;
@@ -163,8 +172,11 @@ a.download:hover{
     color: #3766bc;
 }
 
-
+.loginForm{
+  margin-top: 20px;
+}
 .inputblock input {
+  margin-left: 80px;
   width: 400px;
   height: 44px;
   background-color: #d8d8d8;
@@ -187,6 +199,7 @@ a.download:hover{
 }
 
 .errorInputBlock {
+  margin-left: 80px;
   width: 400px;
   height: 20px;
   position: absolute;
@@ -225,6 +238,7 @@ p.registr {
   font-size: 9pt;
   margin: 5px;
   height: 11pt;
+  margin-left: 80px;
 
 }
 
@@ -276,6 +290,7 @@ p.Error span {
   width: 400px;
   margin-top: 10px;
   border-bottom: 1px solid #bfbfbf;
+  margin-left: 80px;
 
 }
 
@@ -343,4 +358,190 @@ p.Error span {
 
 .register-buttonblock .right-buttonblock input:hover {
   background-color: #4857a1;
+}
+
+
+.answerBlock{
+    margin-left: 80px;
+
+}
+.img{
+    float: left;
+    height: 80px;
+    width:  67px;
+    background: url('../images/download2.png') no-repeat left top;
+}
+
+.fileName{
+    float: left;
+    height:80px;
+    width: 820px;
+    padding-left: 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+a.name{
+    font-size: 24px;
+    text-decoration: none;
+    color: #213060;
+    font-family: 'Roboto-Medium' , sans-serif;
+}
+a.name:hover{
+    color: #3766bc;
+}
+.fileNameContainer{
+}
+a.delete{
+    background: url('../images/delete.png') no-repeat center bottom;
+    background-size: 70%;
+
+    margin-left: 5px;
+    display: inline-block;
+    width:30px;
+    height: 30px;
+}
+.answerData{
+    margin-top: 5px;
+    font-size: 15px;
+    color: #9b9b9b;
+}
+
+
+.jury_comments{
+    clear: both;
+    width: 820px;
+    margin-left: 110px;
+    background-color: #e4ebf4;
+    border-radius: 10px;
+}
+.jury_comments p{
+    margin: 0px 10px 10px 10px;
+    font-size: 16px;
+
+}
+.jury_comments_name_date{
+    height: 30px;
+    background-color: #d3e1ed;
+    padding-top: 7px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.jury_comments_name_date .name{
+    float: left;
+    color: #4c6472;
+    margin-left: 20px;
+    font-size: 18px;
+
+}
+.date{
+    float: right;
+    color: #4c6472;
+    margin-right: 20px;
+    font-size: 14px;
+    padding-top: 2px;
+}
+.comment_text{
+    padding: 10px;
+}
+.downloadButtonBlock{
+    margin-left: 80px;
+}
+.downloadButton{
+    background-color: #213060;
+    border: 2px solid #88aed8;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    color: #f5f6f7;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.downloadButton:hover{
+    background-color: #314070;
+
+}
+
+.downloadButtonBlock .ico{
+    background: url('../images/download2.png') no-repeat right center;
+    width: 67px;
+    height: 80px;
+    float: left;
+    margin-left: 0px;
+    margin-right: 40px;
+}
+
+.window{
+    display: none;
+    position: absolute;
+    width: 300px;
+    background: white;
+    min-height: 160px;
+    z-index: 1000;
+    border-radius: 5px;
+
+
+}
+.shadow{
+    display: none;
+    background: black;
+    position: absolute;
+    top:0px;
+    left:0px;
+    opacity: 0.3;
+}
+.windowTitle{
+    height: 20px;
+    padding: 10px;
+    background-color: #eee;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
+.windowText{
+    color: #333;
+    float: left;
+    font-size: 16px;
+    width: 200px;
+
+}
+.windowClose{
+    float: right;
+    width: 30px;
+    height: 30px;
+    background: url('../images/delete.png') no-repeat center center;
+    background-size: 70%;
+    margin-top: -5px;
+    opacity: 0.7;
+}
+.windowClose:hover{
+    opacity: 1;
+}
+.windowContent{
+    padding: 20px 10px 20px 10px;
+}
+.windowContent p{
+    font-size: 12px;
+    color: #555;
+    text-align: left;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.uploadButton input[type=submit]{
+    background-color: #213060;
+    border: 2px solid #88aed8;
+    border-radius: 10px;
+    width: 100%;
+    height: 30px;
+    color: #f5f6f7;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.uploadButton input[type=submit]:hover{
+    background-color: #314070;
+
 }
