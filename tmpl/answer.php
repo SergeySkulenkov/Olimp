@@ -1,58 +1,61 @@
 <?php
+echo $deleteFileError;
+if(is_array($page['content'])){
+    foreach ($page['content'] as $key => $value) {
+    ?>
+    <div class="answerBlock">
+        <div class="answerFile">
+            <div class="img"></div>
+            <div class="fileName">
+                <div class="fileNameContainer">
+                    <?php $path=INDEX_PAGE."upload/users/".$_SESSION['user']['id']."/".$value['file_name']; ?>
+                    <a  class="name" target="_blank" href="<?= $path;?>"><?= $value['file_name'];?></a>
+                    <a class = "delete" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&del='.$value['id'];?>" onclick="return confirm('Вы действительно хотите удалить файл <?= $value['file_name'];?>?')"></a>
+                </div>
 
-foreach ($page['content'] as $key => $value) {
-?>
-<div class="answerBlock">
-    <div class="answerFile">
-        <div class="img"></div>
-        <div class="fileName">
-            <div class="fileNameContainer">
-                <a  class="name" href="<?= $value['file_path'];?>"><?= $value['file_name'];?></a>
-                <a class = "delete" href="#"></a>
-
+                <div class="answerData">
+                    <?= toRuDate($value['file_date']);?>
+                </div>
             </div>
 
-            <div class="answerData">
-                <?= toRuDate($value['file_date']);?>
-            </div>
+
         </div>
 
+        <?php
+        if(is_array($value['jury_comments'])){
+             foreach ($value['jury_comments'] as  $comment) {
+        ?>
+             <div class="jury_comments">
+                 <div class="jury_comments_name_date">
+                     <div class="name">
+                         Комментарий жюри
+
+                     </div>
+                     <div class="date">
+                         <?= toRuDate($comment['date_comment']);?>
+
+                     </div>
+
+                 </div>
+                 <div class="comment_text">
+                     <?=$comment['comment_text'];?>
+
+                 </div>
+
+             </div>
+
+         <?php
+              }
+        }
+
+    ?>
 
     </div>
 
+
     <?php
-    if(is_array($value['jury_comments'])){
-         foreach ($value['jury_comments'] as  $comment) {
-    ?>
-         <div class="jury_comments">
-             <div class="jury_comments_name_date">
-                 <div class="name">
-                     Комментарий жюри
-
-                 </div>
-                 <div class="date">
-                     <?= toRuDate($comment['date_comment']);?>
-
-                 </div>
-
-             </div>
-             <div class="comment_text">
-                 <?=$comment['comment_text'];?>
-
-             </div>
-
-         </div>
-
-     <?php
-          }
     }
-    ?>
-
-</div>
-
-
-<?php
-}
+ }
  ?>
  <div class="downloadButtonBlock">
      <div class="ico"></div>
@@ -68,13 +71,13 @@ foreach ($page['content'] as $key => $value) {
         <div class="windowText">
             Загрузка файла
         </div>
-        <div class="windowClose">
+        <div class="windowClose" >
 
         </div>
     </div>
     <div class="windowContent">
         <p>Формат файла.</p>
-        <form class="" action="upload.php" method="post" enctype="multipart/form-data">
+        <form class="" action="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&upload=1';?>" method="post" enctype="multipart/form-data">
             <input type="file" name="userfile" value="">
             <div class="uploadButton">
                 <input type="submit" name="" value="Загрузить файл на сервер">

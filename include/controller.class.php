@@ -53,6 +53,53 @@ class Controller{
   public function registr(){
 
   }
+  public function checkUploadUserFile(){
+      if(!isset($_GET['upload'])){
+          return false;
+      }
+      if(isset($_FILES['userfile']['tmp_name'])){
+          $uploadDir = ROOT_PATH."upload/users/".$_SESSION['user']['id'].'/';
+          if(!is_dir($uploadDir)){
+              if(!mkdir($uploadDir,0777,true)){
+                  return false;
+              }
+          }
+          $uploadfile =  $uploadDir.basename($_FILES['userfile']['name']);
+          if(move_uploaded_file($_FILES['userfile']['tmp_name'],$uploadfile)){
+              $this->model->addUserAnswer(1,$_SESSION['user']['id'],$_FILES['userfile']['name'],$uploadfile);
+              return true;
+          }else{
+              return false;
+          }
+
+      }
+      return false;
+  }
+  public function checkUserDeleteAnswer(){
+
+      $file_path = $this->model->getFilePath($_GET['del'],$_SESSION['user']['id']);
+      if(!$file_path){
+          return false;
+      }
+      $this->model->transaction_start();
+      $res = $this->model->delUserAnswer($_GET['del'],$_SESSION['user']['id']);
+      if(!$res){
+          return false;
+
+      }
+      if(file_exists($file_path['file_path'])){
+        if(unlink($file_path['file_path'])){
+            $this->model->transaction_commit();
+            return true;
+        }else{
+            $this->model->transaction_rollback();
+            return false;
+        }
+      }
+      $this->model->transaction_rollback();
+      return false;
+
+  }
 }
 
 ?>

@@ -29,14 +29,15 @@ class Model{
       return false;
 
     }
-    $query ="SELECT * FROM users WHERE login ='".$login."'and password ='".$password."'";
+    $query ="SELECT id, login FROM users WHERE login ='".$login."'and password ='".$password."'";
     $result = mysqli_query($this->db,$query);
     if(!$result){
       echo mysqli_error($this->db);
       exit();
     }
     if(mysqli_num_rows($result)==1){
-      return true;
+        $row = mysqli_fetch_assoc($result);
+        return $row;
 
     }else{
       return false;
@@ -158,9 +159,12 @@ class Model{
       return  mysqli_fetch_assoc($this->simpleQuery($sql));
   }
   public function getAnswerContent(){
-      $sql = "SELECT * FROM `user_answer` WHERE tur_id = 1 and user_id = 1 order by file_date";
+      $sql = "SELECT * FROM `user_answer` WHERE tur_id = 1 and user_id = ".$_SESSION['user']['id']." order by file_date";
       $rows = $this->querySelectRows($sql);
+      if(!$rows){
+          return false;
 
+      }
 
       foreach ($rows as $key => $value) {
           $query  = "SELECT * FROM `jury_comments` WHERE answer_id = ".$value['id']." order by date_comment ";
@@ -170,6 +174,36 @@ class Model{
       }
 
       return $rows;
+  }
+  public function addUserAnswer($tur_id,$user_id,$file_name,$file_path){
+      $query = "INSERT INTO `user_answer`(`tur_id`,`user_id`,`file_name`,`file_path`,`file_date`) VALUES
+      ('".$tur_id."','".$user_id."','".$file_name."','".$file_path."',NOW())";
+      $id = $this->queryInsert($query,true);
+      if(mysqli_error($this->db)){
+          return false;
+      }else{
+          return $id;
+      }
+
+  }
+  public function delUserAnswer($id,$user_id){
+      $query = "delete from `user_answer` where id = '".$id."' and user_id = '".$user_id."'";
+      return $this->simpleQuery($query);
+
+  }
+  public function getFilePath($id, $user_id){
+      $query =  "SELECT file_path from `user_answer`  where id = '".$id."' and user_id = '".$user_id."'";
+      return $this->querySelectRow($query);
+
+  }
+  public function transaction_start(){
+      $this->simpleQuery("start transaction");
+  }
+  public function transaction_commit(){
+      $this->simpleQuery("commit");
+  }
+  public function transaction_rollback(){
+      $this->simpleQuery("rollback");
   }
 
 }

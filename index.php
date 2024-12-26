@@ -1,3 +1,4 @@
+
 <?php
 include('run.php');
 $controller->checkLogin();
@@ -5,7 +6,24 @@ $controller->checkLogin();
 $model->createOimp("Новая олимпиада", "132124",1);
 $res=$model->getOlimpList();
 $pageName = $controller->getPageName();
+$deleteFileError = "";
+if($controller->checkUploadUserFile()){
+    header("Location:".INDEX_PAGE."?id=".$_GET['id']);
+
+}
+if(isset($_GET['del'])){
+    if($controller->checkUserDeleteAnswer()){
+        header("Location:".INDEX_PAGE."?id=".$_GET['id']);
+    }else{
+
+        $deleteFileError = "<p class = 'deleteFileError'>Не удалось удалить файл, свяжитесь с администратором сервера.</p><script>\$(document).ready(function(){\$('.deleteFileError').delay(3000).hide(300);});</script>";
+    }
+
+}
+
+
 $page = $controller->getPageContent();
+
 if(!$res){
   echo "Error! Нет данных";
 }

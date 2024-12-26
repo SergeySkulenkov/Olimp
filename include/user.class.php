@@ -13,7 +13,10 @@ class User{
   public function getLogin(){
     $result = $this->model->validLogin();
     if($result){
-      $_SESSION['user']['login']=true;
+    $_SESSION['user']['id'] = $result['id'];
+    $_SESSION['user']['username'] = $result['login'];
+    $_SESSION['user']['login']=true;
+
     }
     return !$result;
   }
@@ -29,6 +32,10 @@ class User{
 
   public function logOut(){
     unset($_SESSION['user']);
+  }
+
+  public function getId(){
+     // return $this->model->getUserID()
   }
 }
 ?>

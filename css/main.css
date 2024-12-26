@@ -114,11 +114,10 @@ body{
 
 }
 .topBlock{
-  height: 80px;
+  min-height: 80px;
 
 }
 .container{
-  height: 300px;
   flex-grow: 1;
 
 
@@ -447,6 +446,7 @@ a.delete{
 }
 .downloadButtonBlock{
     margin-left: 80px;
+    margin-bottom: 50px;
 }
 .downloadButton{
     background-color: #213060;
@@ -459,6 +459,7 @@ a.delete{
     text-transform: uppercase;
     margin-top: 15px;
     cursor: pointer;
+
 }
 .downloadButton:hover{
     background-color: #314070;
@@ -476,7 +477,7 @@ a.delete{
 
 .window{
     display: none;
-    position: absolute;
+    position: fixed;
     width: 300px;
     background: white;
     min-height: 160px;
@@ -488,7 +489,7 @@ a.delete{
 .shadow{
     display: none;
     background: black;
-    position: absolute;
+    position: fixed;
     top:0px;
     left:0px;
     opacity: 0.5;

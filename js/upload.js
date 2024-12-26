@@ -8,7 +8,10 @@ $(document).ready(function(){
     });
 });
 $(window).resize(function(){
-    windowShow();
+    if ($('.window').css("display") == "block") {
+        windowShow();
+    }
+
 });
 function windowShow(){
     let width = $(window).width();
