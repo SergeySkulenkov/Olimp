@@ -7,6 +7,7 @@ $model->createOimp("Новая олимпиада", "132124",1);
 $res=$model->getOlimpList();
 $pageName = $controller->getPageName();
 $deleteFileError = "";
+$page = $controller->getPageContent();
 if($controller->checkUploadUserFile()){
     header("Location:".INDEX_PAGE."?id=".$_GET['id']);
 
@@ -20,9 +21,19 @@ if(isset($_GET['del'])){
     }
 
 }
+if(isset($_GET['id']) && $_GET['id']== 4){
+  if(isset($_POST['username'])){
+  
+  }
+  $login = $page['content']['login'];
+  $username = $page['content']['username'];
+  $email = $page['content']['email'];
+
+}
 
 
-$page = $controller->getPageContent();
+
+
 
 if(!$res){
   echo "Error! Нет данных";
@@ -57,11 +68,14 @@ if(!$res){
 
           </div>
           <div class="mainContent">
-              <?php if(isset($_GET['id']) && $_GET['id']==2){
+              <?php 
+             if(isset($_GET['id']) && $_GET['id']==2){
                  include(ROOT_PATH.'tmpl/answer.php');
-              }else{
+             }else if(isset($_GET['id']) && $_GET['id']==4){
+                include(ROOT_PATH.'tmpl/profile.php');
+             }else{
                  echo  $page['content'];
-              }
+             }
               ?>
 
           </div>

@@ -9,7 +9,7 @@
             тире, знак
             точка.</span></p>
     <div class="inputblock margin30top">
-        <input type="text" id="username" name="username" value="" autocomplete="off"
+        <input type="text" id="username" name="username" value="<?= $username;?>" autocomplete="off"
                     placeholder="Имя пользователя">
             <div id="usernameError" class="errorInputBlock <?php echo $loginError;?>">
             </div>
@@ -19,7 +19,7 @@
                     точка.</span></p>
 
     <div class="inputblock margin30top">
-        <input type="email" id="email" name="email" value="" autocomplete="off"
+        <input type="email" id="email" name="email" value="<?= $email;?>" autocomplete="off"
             placeholder="Электронная почта">
         <div id="emailError" class="errorInputBlock <?php echo $loginError;?>">
         </div>

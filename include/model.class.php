@@ -147,6 +147,11 @@ class Model{
 
      }
   }
+  public function getUser($id){
+    $query = "SELECT login, password, email, username  FROM users where id = '".$id."'";
+    return  $this->querySelectRow($query);
+
+  }
   public function registr($login,$username,$password,$email,$code,$ip,$priv){
     $query = "INSERT INTO `users` (`login`,`username`, `password`,`email`, `date_reg`,`ip`,`priv`) VALUES
     ('".$login."', '".$username."', '".$password."','".$email."',NOW(),'".$ip."','".$priv."')";

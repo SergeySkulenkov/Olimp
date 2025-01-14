@@ -41,7 +41,7 @@ class Controller{
           return array('title'=>'Ответы', 'content'=>$content);
       }
       else if($this->model->pageID == 4){
-          $content = file_get_contents(ROOT_PATH.'tmpl/profile.php');
+          $content = $this->model->getUser($_SESSION['user']['id']);
           return array('title'=>'Профиль', 'content'=>$content);
       }
 
