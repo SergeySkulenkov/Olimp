@@ -1,4 +1,5 @@
-<form class="loginForm" novalidate action="registr.php" method="post" onsubmit="return registr()">
+<?= $message; ?>
+<form class="loginForm" novalidate action="index.php?id=4"  method="post" onsubmit="">
     <div class="inputblock">
         <input type="text" id="login" name="login" value="<?= $login;?>" autocomplete="off"
             placeholder="Логин">

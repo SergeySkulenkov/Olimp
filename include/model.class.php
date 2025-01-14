@@ -211,5 +211,21 @@ class Model{
       $this->simpleQuery("rollback");
   }
 
+  public function updateUser($id,$login,$username,$email,$password)
+  {
+    $query ="SELECT login FROM users where id != ".$id." and UPPER(login) = '".strtoupper($login)."'";
+    $res = $this->querySelectRow($query);
+    if($res){
+      return "Пользователь с таким логином уже существует.";
+    }
+    if($password ==""){
+      $query = "UPDATE users set login = '".$login."', username = '".$username."', email = '".$email."' where id ='".$id."'";
+    }else{
+      $query = "UPDATE users set login = '".$login."', username  = '".$username."', email = '".$email."', password = '".$password."' where id =  '".$id."'";
+    }
+    return $this->simpleQuery($query);
+    
+  }
+
 }
 ?>

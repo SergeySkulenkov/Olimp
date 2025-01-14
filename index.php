@@ -21,9 +21,16 @@ if(isset($_GET['del'])){
     }
 
 }
+$message = "";
 if(isset($_GET['id']) && $_GET['id']== 4){
   if(isset($_POST['username'])){
-  
+    $res = $model->updateUser($_SESSION['user']['id'], $_POST['login'], $_POST['username'], $_POST['email'],$_POST['password']);
+    if($res === true){
+      $message =  "<p class = 'update'>Данные обновлены.</p><script>\$(document).ready(function(){\$('.update').delay(3000).hide(300);});</script>";
+      $page = $controller->getPageContent();
+    }else{
+      $message =  "<p class = 'updateError'>".$res."</p><script>\$(document).ready(function(){\$('.updateError').delay(3000).hide(300);});</script>";
+    }
   }
   $login = $page['content']['login'];
   $username = $page['content']['username'];
