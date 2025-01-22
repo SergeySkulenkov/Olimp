@@ -40,6 +40,10 @@ class Controller{
           $content = $this->model->getAnswerContent();
           return array('title'=>'Ответы', 'content'=>$content);
       }
+      else if($this->model->pageID == 3){
+        $content = $this->model->printUserQuestion($_SESSION['user']['id']);
+        return array('title'=>'Задать вопрос', 'content'=>$content);
+      }
       else if($this->model->pageID == 4){
           $content = $this->model->getUser($_SESSION['user']['id']);
           return array('title'=>'Профиль', 'content'=>$content);

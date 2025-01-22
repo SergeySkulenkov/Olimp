@@ -226,6 +226,10 @@ class Model{
     return $this->simpleQuery($query);
     
   }
+  public function printUserQuestion($user_id){
+    $query =  "SELECT * from user_question where user_id = '".$user_id."'";
+    return $this->querySelectRows($query);
+  }
 
 }
 ?>

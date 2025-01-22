@@ -80,7 +80,9 @@ if(!$res){
                  include(ROOT_PATH.'tmpl/answer.php');
              }else if(isset($_GET['id']) && $_GET['id']==4){
                 include(ROOT_PATH.'tmpl/profile.php');
-             }else{
+             }else if(isset($_GET['id']) && $_GET['id']==3){
+              include(ROOT_PATH.'tmpl/question.php');
+           }else{
                  echo  $page['content'];
              }
               ?>
