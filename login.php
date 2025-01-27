@@ -40,7 +40,7 @@ if (isset($_POST['login'])){
       <form class="loginForm" action="login.php" method="post" onsubmit="return login1()">
         <h1>Вход</h1>
         <div class="inputblock margin30">
-          <input type="text" id="login" name="login" value="" placeholder="Имя пользователя">
+          <input type="text" id="login" name="login" value="<?= $login ?>" placeholder="Имя пользователя">
           <div class="errorInputBlock" id="loginError"></div>
         </div>
         <div class="inputblock">
@@ -64,6 +64,17 @@ if (isset($_POST['login'])){
   </div>
 
   <script type="text/javascript" src="js/script3.js"></script>
+  <?php
+    if($error){
+      ?>
+      <script> 
+        addErrorClass('passwordError');
+        addErrorClass('loginError');
+        addErrorClass('generalError');
+      </script>
+      <?php
+    } 
+  ?>
 </body>
 
 </html>
