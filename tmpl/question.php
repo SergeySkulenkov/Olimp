@@ -15,9 +15,37 @@ $id = 1;
 foreach($page['content'] as $value){
     
     echo "<p style='display:block;' id='titleBlock_$id' onclick='showBlock($id)'> ". getStrPart($value['question'],100)." </p>";
+    
     ?>
     <div style= "display:none" id="block_<?=$id;?>">
         <p><?= $value['question'];?></p>
+        <?php
+        if(is_array($value['answers'])){ 
+            foreach($value['answers'] as $answer){ 
+            // print_r($answer);
+            ?>
+            <div class="jury_comments">
+            <div class="jury_comments_name_date">
+                <div class="name">
+                    Ответ
+
+                </div>
+                <div class="date">
+                <?= toRuDate($answer['date_comment']);?>
+                </div>
+
+            </div>
+            <div class="comment_text">
+                <p><?= $answer['comment_text'];?></p>
+
+            </div>
+
+        </div>
+                
+            <?php 
+            }
+        }
+        ?>
         <p><a href="#" onclick = 'return hideBlock(<?=$id;?>)'>Свернуть</a></p>
     </div>
 

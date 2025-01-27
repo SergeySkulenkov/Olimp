@@ -228,7 +228,14 @@ class Model{
   }
   public function printUserQuestion($user_id){
     $query =  "SELECT * from user_question where user_id = '".$user_id."'";
-    return $this->querySelectRows($query);
+    $question = $this->querySelectRows($query);
+    for($i = 0;$i<sizeof($question);$i++){
+      $query =  "SELECT * from admin_answer where answer_id = '".$question[$i]['id']."'";
+      $question[$i]['answers'] = $this->querySelectRows($query);
+
+    }
+    return $question;
+
   }
 
 }
