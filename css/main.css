@@ -174,7 +174,7 @@ a.download:hover{
 .loginForm{
   margin-top: 20px;
 }
-.inputblock input {
+.inputblock input{
   margin-left: 80px;
   width: 400px;
   height: 44px;
@@ -196,7 +196,29 @@ a.download:hover{
   background-color: #e8e8e8;
 
 }
-
+.textAreaBlock{
+  min-height: 200px;
+  box-sizing: border-box;
+  width: 100%;;
+}
+textarea{
+  resize: none;
+  height: 200px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 80px;
+  background-color: #d8d8d8;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-size: 12pt;
+  color: #333;
+}
+.clearFloat{
+  clear: both;
+}
 .errorInputBlock {
   margin-left: 80px;
   width: 400px;
@@ -205,6 +227,7 @@ a.download:hover{
   bottom: 0px;
   border-radius: 5px;
   z-index: 1000;
+  
 }
 
 .inputblock {
@@ -288,7 +311,6 @@ p.Error span {
   height: 60px;
   width: 400px;
   margin-top: 10px;
-  border-bottom: 1px solid #bfbfbf;
   margin-left: 80px;
 
 }
@@ -400,6 +422,14 @@ a.delete{
     display: inline-block;
     width:30px;
     height: 30px;
+}
+.smallQuestionText{
+  position: relative;
+}
+.smallQuestionText a.delete{
+  position: absolute;
+  right: 0px;
+  top: -10px;
 }
 .answerData{
     margin-top: 5px;

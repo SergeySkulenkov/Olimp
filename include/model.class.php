@@ -237,6 +237,20 @@ class Model{
     return $question;
 
   }
-
+  public function checkUserQuestion($user_id, $text, $tur_id)
+  {
+    $text = trim($text);
+    if(strlen($text)<20 ||  strlen($text)>2000){
+      return false;
+    }
+    $query = "INSERT INTO `user_question`(`tur_id`,`user_id`,`question`,`date`) VALUES
+      ('".$tur_id."','".$user_id."','".$text."',NOW())";
+    $this->queryInsert($query);  
+    return true;
+  }
+  public function delUserQuestion($id,$user_id){
+    $query = "delete from `user_question` where id = '".$id."' and user_id = '".$user_id."'";
+    return $this->simpleQuery($query);
+  }
 }
 ?>

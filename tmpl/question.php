@@ -9,14 +9,32 @@
         return false;
 
     }
+    function deleteQuestion(id, text){
+        confirm('Вы действительно хотите удалить вопрос "'+text+'"?');
+        $.ajax({
+            url: 'delete_question.php',
+            method: 'get',
+            dataType: 'html',
+            data: {id: id},
+            success: function(data){
+                alert(data);
+            }
+
+        });
+        return false;
+    }
 </script>
 <?php 
 $id = 1;
 foreach($page['content'] as $value){
-    
+    echo '<div class="smallQuestionText">';
     echo "<p style='display:block;' id='titleBlock_$id' onclick='showBlock($id)'> ". getStrPart($value['question'],100)." </p>";
-    
     ?>
+        <a class = "delete" href="#" onclick="return deleteQuestion(<?=$value['id'];?> ,'<?=getStrPart($value['question'],50)?>')"></a>
+    <?php
+    echo '</div>';
+    ?>
+    
     <div style= "display:none" id="block_<?=$id;?>">
         <p><?= $value['question'];?></p>
         <?php
@@ -55,3 +73,14 @@ foreach($page['content'] as $value){
 
 }
 ?>
+<?= $message; ?>
+<form action="index.php?id=<?=$_GET['id'];?>" method = "post">
+    <div class="textAreaBlock">
+        <textarea name="question" id="question"></textarea>
+    </div>
+    <div class="buttonblock register-buttonblock clearFloat">
+        <div class="right-buttonblock">
+            <input type="submit" name="register" value="Отправить">
+        </div>
+    </div>
+</form>

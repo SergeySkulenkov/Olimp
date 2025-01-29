@@ -37,15 +37,24 @@ if(isset($_GET['id']) && $_GET['id']== 4){
   $email = $page['content']['email'];
 
 }
+if(isset($_GET['id']) && $_GET['id']== 3){
+  if(isset($_POST['question'])){
+    $res = $model->checkUserQuestion($_SESSION['user']['id'],$_POST['question'] , 1);
+    if($res === true){
+      $message =  "<p class = 'update'>Вопрос отправлен.</p><script>\$(document).ready(function(){\$('.update').delay(3000).hide(300);});</script>";
+      $page = $controller->getPageContent();
+    }else{
+      $message =  "<p class = 'updateError'>Ошибка!</p><script>\$(document).ready(function(){\$('.updateError').delay(3000).hide(300);});</script>";
+    }
+  }
 
-
-
-
-
-if(!$res){
-  echo "Error! Нет данных";
 }
-//print_r($res);
+
+
+
+
+
+
 
 ?>
 <!DOCTYPE html>

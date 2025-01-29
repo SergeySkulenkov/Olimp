@@ -5,7 +5,7 @@ include(INCLUDE_PATH."model.class.php");
 include(INCLUDE_PATH."user.class.php");
 include(INCLUDE_PATH."controller.class.php");
 include(INCLUDE_PATH."function.php");
-$model =new Model;
+$model = new Model;
 $controller = new Controller($model);
 
 ?>
