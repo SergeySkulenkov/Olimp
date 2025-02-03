@@ -1,5 +1,13 @@
 <?php 
 include('run.php');
-echo $_GET['id'];
-$model->delUserQuestion($_GET['id'], $_SESSION['user']['id']);
+if(isset($_SESSION['user']['login'])){
+    if($model->delUserQuestion($_GET['id'], $_SESSION['user']['id'])){
+        echo "true";
+    }else{
+        echo "error";
+    }
+}else{
+    echo 'Error';
+}
+
 ?>

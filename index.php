@@ -1,6 +1,8 @@
 
 <?php
+
 include('run.php');
+
 $controller->checkLogin();
 //$model->simpleQuery("UPDATE olimp SET title ='new title' WHERE id = 1");
 $model->createOimp("Новая олимпиада", "132124",1);
@@ -38,14 +40,17 @@ if(isset($_GET['id']) && $_GET['id']== 4){
 
 }
 if(isset($_GET['id']) && $_GET['id']== 3){
-  if(isset($_POST['question'])){
-    $res = $model->checkUserQuestion($_SESSION['user']['id'],$_POST['question'] , 1);
+  $num = $_SESSION['question'];
+  if(isset($_POST['question_'.$num])){
+    
+    $res = $model->checkUserQuestion($_SESSION['user']['id'],$_POST['question_'.$num] , 1);
     if($res === true){
       $message =  "<p class = 'update'>Вопрос отправлен.</p><script>\$(document).ready(function(){\$('.update').delay(3000).hide(300);});</script>";
       $page = $controller->getPageContent();
     }else{
       $message =  "<p class = 'updateError'>Ошибка!</p><script>\$(document).ready(function(){\$('.updateError').delay(3000).hide(300);});</script>";
     }
+    unset($_SESSION['question']);
   }
 
 }

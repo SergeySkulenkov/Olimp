@@ -229,12 +229,18 @@ class Model{
   public function printUserQuestion($user_id){
     $query =  "SELECT * from user_question where user_id = '".$user_id."'";
     $question = $this->querySelectRows($query);
-    for($i = 0;$i<sizeof($question);$i++){
-      $query =  "SELECT * from admin_answer where answer_id = '".$question[$i]['id']."'";
-      $question[$i]['answers'] = $this->querySelectRows($query);
+    if(is_array($question)){
+      for($i = 0;$i<sizeof($question);$i++){
+        $query =  "SELECT * from admin_answer where answer_id = '".$question[$i]['id']."'";
+        $question[$i]['answers'] = $this->querySelectRows($query);
+  
+      }
+      return $question;
 
     }
-    return $question;
+    return false;
+   
+    
 
   }
   public function checkUserQuestion($user_id, $text, $tur_id)

@@ -197,6 +197,7 @@ a.download:hover{
 
 }
 .textAreaBlock{
+  margin-top: 20px;
   min-height: 200px;
   box-sizing: border-box;
   width: 100%;;
@@ -426,10 +427,10 @@ a.delete{
 .smallQuestionText{
   position: relative;
 }
-.smallQuestionText a.delete{
+.smallQuestionText a.delete, .questionBlock a.delete{
   position: absolute;
-  right: 0px;
-  top: -10px;
+  right: -35px;
+  top: 0px;
 }
 .answerData{
     margin-top: 5px;
@@ -575,4 +576,19 @@ a.delete{
 .uploadButton input[type=submit]:hover{
     background-color: #314070;
 
+}
+.questionBlock, .smallQuestionText{
+  background-color: rgb(238, 238, 238);
+  margin-top: 20px;
+  margin-left: 80px;
+  padding: 15px;
+  border-radius: 3px;
+}
+.questionBlock p, .smallQuestionText p{
+  margin: 0px;
+  padding: 0px;
+
+}
+.questionBlock{
+  position: relative;
 }
