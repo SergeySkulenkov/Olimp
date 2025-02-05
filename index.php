@@ -2,7 +2,6 @@
 <?php
 
 include('run.php');
-
 $controller->checkLogin();
 //$model->simpleQuery("UPDATE olimp SET title ='new title' WHERE id = 1");
 $model->createOimp("Новая олимпиада", "132124",1);
@@ -96,8 +95,28 @@ if(isset($_GET['id']) && $_GET['id']== 3){
                 include(ROOT_PATH.'tmpl/profile.php');
              }else if(isset($_GET['id']) && $_GET['id']==3){
               include(ROOT_PATH.'tmpl/question.php');
-           }else{
-                 echo  $page['content'];
+             }else if(isset($_GET['id']) && $_GET['id']==5){
+              include(ROOT_PATH.'tmpl/otvet.php');
+             }else{
+                if($_SESSION['user']['role'] == "super_admin"){
+                 ?>
+                  <div class = "adminEdit">
+                    <a href="<?=INDEX_PAGE;?>?edit=1&id=1">Редактировать</a>
+                  </div>
+                 <?php 
+                }
+                if(isset($_GET['edit']) && $_GET['edit']==1){
+                  ?>
+                    <form action="<?=INDEX_PAGE;?>?edit=1&id=1" method="post">
+                      <textarea name="editor" id="editor"><?=$page['content']?></textarea>
+                      <input type="submit" value="Сохранить">
+                    </form>
+                  <?php
+
+                }else{
+                  echo  $page['content'];
+                }
+                 
              }
               ?>
 

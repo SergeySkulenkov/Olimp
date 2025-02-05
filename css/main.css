@@ -76,6 +76,9 @@ body{
 #profile .ico {
   background: #ffffff url('../images/profile.png') no-repeat center center;
 }
+#adminOtvet .ico {
+  background: #ffffff url('../images/zadat_vopros.png') no-repeat center center;
+}
 
 .menu a.active{
   background: #ffffff;
@@ -100,6 +103,11 @@ body{
   background: #213060 url('../images/profile_active.png') no-repeat center center;
 
 }
+#adminOtvet.active .ico{
+  background: #213060 url('../images/zadat_vopros_active.png') no-repeat center center;
+
+}
+
 
 
 

@@ -1,10 +1,13 @@
 <?php
 class Model{
   public $db = false;
-  public $pages = array(array("id"=>1,"name"=>"Задания","css"=>"zadaniya"),
-                array("id"=>2,"name"=>"Ответы","css"=>"otvet"),
-                array("id"=>3,"name"=>"Задать вопрос","css"=>"vopros"),
-                array("id"=>4,"name"=>"Профиль","css"=>"profile"));
+  public $pages = array(
+                array("id"=>1,"name"=>"Задания","css"=>"zadaniya","user"=>true, "super_admin"=>true),
+                array("id"=>2,"name"=>"Ответы","css"=>"otvet","user"=>true, "super_admin"=>true),
+                array("id"=>3,"name"=>"Задать вопрос","css"=>"vopros","user"=>true, "super_admin"=>true),
+                array("id"=>4,"name"=>"Профиль","css"=>"profile","user"=>true, "super_admin"=>true),
+                array("id"=>5,"name"=>"Вопросы","css"=>"adminOtvet","user"=>false, "super_admin"=>true),
+              );
   public $pageID;
   public function __construct(){
     $this->dbConnect();
@@ -29,7 +32,7 @@ class Model{
       return false;
 
     }
-    $query ="SELECT id, login FROM users WHERE login ='".$login."'and password ='".$password."'";
+    $query ="SELECT id, login, priv FROM users WHERE login ='".$login."'and password ='".$password."' and priv != 0";
     $result = mysqli_query($this->db,$query);
     if(!$result){
       echo mysqli_error($this->db);
@@ -130,7 +133,21 @@ class Model{
   }
 
   public function getMenu(){
-    return $this->pages;
+    $retval = array();
+    foreach ($this->pages as $item) {
+        if($_SESSION['user']['role']=="user"){
+            if($item['user']==true){
+              $retval[] = $item;
+            }
+        }else if($_SESSION['user']['role']=="super_admin"){
+          if($item['super_admin']==true){
+            $retval[] = $item;
+          
+          }
+        }
+
+     }
+    return $retval;
   }
   public function getPageName(){
     $menu = $this->getMenu();
@@ -239,9 +256,6 @@ class Model{
 
     }
     return false;
-   
-    
-
   }
   public function checkUserQuestion($user_id, $text, $tur_id)
   {
@@ -257,6 +271,27 @@ class Model{
   public function delUserQuestion($id,$user_id){
     $query = "delete from `user_question` where id = '".$id."' and user_id = '".$user_id."'";
     return $this->simpleQuery($query);
+  }
+  public function printAdminQuestion($user_id, $type=0){
+    $query = "";
+    if($type == 0){
+      $query =  "SELECT * FROM `user_question` LEFT JOIN admin_answer ON user_question.id = admin_answer.answer_id and admin_answer.answer_id = NULL order by date desc";
+    }else if($type == 1){
+      $query =  "SELECT * FROM `user_question`, admin_answer WHERE user_question.id = admin_answer.answer_id";
+    }else if($type == 2){
+      $query =  "SELECT * from user_question order by date desc";
+    }
+    $question = $this->querySelectRows($query);
+    if(is_array($question)){
+      for($i = 0;$i<sizeof($question);$i++){
+        $query =  "SELECT * from admin_answer where answer_id = '".$question[$i]['id']."'";
+        $question[$i]['answers'] = $this->querySelectRows($query);
+  
+      }
+      return $question;
+
+    }
+    return false;
   }
 }
 ?>

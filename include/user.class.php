@@ -13,9 +13,11 @@ class User{
   public function getLogin(){
     $result = $this->model->validLogin();
     if($result){
+      $roles = array("1" => "user","2" => "jury","5" => "super_admin");
     $_SESSION['user']['id'] = $result['id'];
     $_SESSION['user']['username'] = $result['login'];
-    $_SESSION['user']['login']=true;
+    $_SESSION['user']['login'] = true;
+    $_SESSION['user']['role'] = $roles[$result['priv']];
 
     }
     return !$result;

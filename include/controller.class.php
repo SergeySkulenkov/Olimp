@@ -48,6 +48,13 @@ class Controller{
           $content = $this->model->getUser($_SESSION['user']['id']);
           return array('title'=>'Профиль', 'content'=>$content);
       }
+      else if($this->model->pageID == 5){
+        $type = 0;
+        if(isset($_GET['answer']))
+           $type = $_GET['answer'];
+        $content = $this->model->printAdminQuestion($_SESSION['user']['id'],$type);
+        return array('title'=>'Ответы', 'content'=>$content);
+      }
 
   }
   public function logOut(){
