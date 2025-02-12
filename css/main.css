@@ -423,6 +423,16 @@ a.name:hover{
 }
 .fileNameContainer{
 }
+a.otvet{
+    background: url('../images/edit.png') no-repeat center bottom;
+    background-size: 70%;
+
+    margin-left: 5px;
+    display: inline-block;
+    width:30px;
+    height: 30px;
+
+}
 a.delete{
     background: url('../images/delete.png') no-repeat center bottom;
     background-size: 70%;
@@ -432,6 +442,7 @@ a.delete{
     width:30px;
     height: 30px;
 }
+
 .smallQuestionText{
   position: relative;
 }

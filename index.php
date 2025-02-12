@@ -4,7 +4,7 @@
 include('run.php');
 $controller->checkLogin();
 //$model->simpleQuery("UPDATE olimp SET title ='new title' WHERE id = 1");
-$model->createOimp("Новая олимпиада", "132124",1);
+//$model->createOimp("Новая олимпиада", "132124",1);
 $res=$model->getOlimpList();
 $pageName = $controller->getPageName();
 $deleteFileError = "";
@@ -90,7 +90,11 @@ if(isset($_GET['id']) && $_GET['id']== 3){
           <div class="mainContent">
               <?php 
              if(isset($_GET['id']) && $_GET['id']==2){
+              if($_SESSION['user']['role'] == "super_admin"){
+                include(ROOT_PATH.'tmpl/admin_answer.php');
+              }else{
                  include(ROOT_PATH.'tmpl/answer.php');
+              }
              }else if(isset($_GET['id']) && $_GET['id']==4){
                 include(ROOT_PATH.'tmpl/profile.php');
              }else if(isset($_GET['id']) && $_GET['id']==3){

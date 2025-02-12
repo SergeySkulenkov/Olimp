@@ -4,9 +4,10 @@ class Model{
   public $pages = array(
                 array("id"=>1,"name"=>"Задания","css"=>"zadaniya","user"=>true, "super_admin"=>true),
                 array("id"=>2,"name"=>"Ответы","css"=>"otvet","user"=>true, "super_admin"=>true),
-                array("id"=>3,"name"=>"Задать вопрос","css"=>"vopros","user"=>true, "super_admin"=>true),
+                array("id"=>3,"name"=>"Задать вопрос","css"=>"vopros","user"=>true, "super_admin"=>false),
                 array("id"=>4,"name"=>"Профиль","css"=>"profile","user"=>true, "super_admin"=>true),
                 array("id"=>5,"name"=>"Вопросы","css"=>"adminOtvet","user"=>false, "super_admin"=>true),
+                array("id"=>6,"name"=>"Олимпиада","css"=>"olimp","user"=>false, "super_admin"=>true)
               );
   public $pageID;
   public function __construct(){
@@ -152,10 +153,10 @@ class Model{
   public function getPageName(){
     $menu = $this->getMenu();
     $active_index = 1;
-    $size = sizeof($menu);
-    if(isset($_GET['id']) && $_GET['id'] >= 1  && $_GET['id'] <= $size ){
+    if(isset($_GET['id']) && $_GET['id'] >= 1&& $this->issetIndex( $_GET['id'], $menu)){
       $active_index = $_GET['id'];
     }
+    
     foreach ($menu as $item) {
       if($item['id'] == $active_index){
           $this->pageID = $active_index;
@@ -163,6 +164,14 @@ class Model{
        }
 
      }
+  }
+  public function issetIndex($id, $menu){
+    foreach($menu as $value){
+      if($value['id']== $id){
+        return true;
+    } 
+   }
+   return false;
   }
   public function getUser($id){
     $query = "SELECT login, password, email, username  FROM users where id = '".$id."'";
@@ -273,9 +282,11 @@ class Model{
     return $this->simpleQuery($query);
   }
   public function printAdminQuestion($user_id, $type=0){
+    echo "type=".$type;
     $query = "";
     if($type == 0){
       $query =  "SELECT * FROM `user_question` LEFT JOIN admin_answer ON user_question.id = admin_answer.answer_id and admin_answer.answer_id = NULL order by date desc";
+      echo $query;
     }else if($type == 1){
       $query =  "SELECT * FROM `user_question`, admin_answer WHERE user_question.id = admin_answer.answer_id";
     }else if($type == 2){
@@ -293,5 +304,31 @@ class Model{
     }
     return false;
   }
+  public function getUserAnswerList(){
+    $query = "SELECT * FROM `users` , user_answer WHERE users.id = user_answer.user_id and user_answer.tur_id = 1 group by (users.id)";
+    return $this->querySelectRows($query);
+  }
+
+  public function getUserAnswerContent($user_id){
+    $sql = "SELECT * FROM `user_answer` WHERE tur_id = 1 and user_id = ".$user_id." order by file_date";
+    $rows = $this->querySelectRows($sql);
+    if(!$rows){
+        return false;
+
+    }
+
+    foreach ($rows as $key => $value) {
+        $query  = "SELECT * FROM `jury_comments` WHERE answer_id = ".$value['id']." order by date_comment ";
+        $r = $this->querySelectRows($query);
+        $rows[$key]['jury_comments'] = $r;
+
+    }
+
+    return $rows;
+}
+public function getUserAnswer($id){
+  $sql = "SELECT * FROM `user_answer` WHERE tur_id = 1 and id = ".$id." order by file_date";
+  return $this->querySelectRows($sql);
+}
 }
 ?>

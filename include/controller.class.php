@@ -22,11 +22,22 @@ class Controller{
   public function printMenu(){
     $menu = $this->model->getMenu();
     $active_index = 1;
-    $size = sizeof($menu);
-    if(isset($_GET['id']) && $_GET['id'] >= 1  && $_GET['id'] <= $size ){
+    //To do Проверить индекс 
+    if(isset($_GET['id']) && $_GET['id'] >= 1 && $this->issetIndex( $_GET['id'], $menu)){
       $active_index = $_GET['id'];
     }
     include(ROOT_PATH."/tmpl/menu.php");
+
+  }
+  public function issetIndex($id, $menu){
+    foreach($menu as $value){
+      if($value['id']== $id){
+        return true;
+      }
+      
+
+    }
+    return false;
 
   }
   public function getPageName(){
@@ -37,8 +48,24 @@ class Controller{
           return $this->model->getPageContent("tasks");
       }
       else if($this->model->pageID == 2){
+        if($_SESSION['user']['role'] == "super_admin"){
+          //Если нужно показать список пользователей
+          if(!isset($_GET['user'])){
+            $content = $this->model->getUserAnswerList();
+            return array('title'=>'Ответы', 'content'=>$content);
+          }else if(isset($_GET['otvet'])){
+            $content = $this->model->getUserAnswer($_GET['otvet']);
+            return array('title'=>'Ответы', 'content'=>$content);
+          }else{
+            $content = $this->model->getUserAnswerContent($_GET['user']);
+            return array('title'=>'Ответы', 'content'=>$content);
+          }
+          
+
+        }else{
           $content = $this->model->getAnswerContent();
           return array('title'=>'Ответы', 'content'=>$content);
+        }
       }
       else if($this->model->pageID == 3){
         $content = $this->model->printUserQuestion($_SESSION['user']['id']);
