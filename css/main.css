@@ -464,6 +464,7 @@ a.delete{
     margin-left: 110px;
     background-color: #e4ebf4;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 .jury_comments p{
     margin: 0px 10px 10px 10px;
@@ -610,4 +611,17 @@ a.delete{
 }
 .questionBlock{
   position: relative;
+}
+a.delJrc{
+  margin-left: 10px;
+  color: #4c6472;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-decoration: none;
+
+}
+a.delJrc:hover{
+  text-decoration: underline;
+  color: brown;
 }

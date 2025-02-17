@@ -6,6 +6,13 @@ $controller->checkLogin();
 //$model->simpleQuery("UPDATE olimp SET title ='new title' WHERE id = 1");
 //$model->createOimp("Новая олимпиада", "132124",1);
 $res=$model->getOlimpList();
+if(isset($_POST['adminAnswer'])){
+  $model->addJuryAnswer($_GET['user'],$_GET['otvet_id'],$_POST['adminAnswer']);
+
+}
+if(isset($_GET['delJrc'])){
+  $model-> delJuryAnswer($_GET['delJrc']);
+}
 $pageName = $controller->getPageName();
 $deleteFileError = "";
 $page = $controller->getPageContent();
@@ -22,7 +29,9 @@ if(isset($_GET['del'])){
     }
 
 }
+
 $message = "";
+
 if(isset($_GET['id']) && $_GET['id']== 4){
   if(isset($_POST['username'])){
     $res = $model->updateUser($_SESSION['user']['id'], $_POST['login'], $_POST['username'], $_POST['email'],$_POST['password']);
@@ -53,6 +62,7 @@ if(isset($_GET['id']) && $_GET['id']== 3){
   }
 
 }
+
 
 
 
@@ -91,7 +101,7 @@ if(isset($_GET['id']) && $_GET['id']== 3){
               <?php 
              if(isset($_GET['id']) && $_GET['id']==2){
               if($_SESSION['user']['role'] == "super_admin"){
-                include(ROOT_PATH.'tmpl/admin_answer.php');
+                include(ROOT_PATH.'tmpl/jury_answer.php');
               }else{
                  include(ROOT_PATH.'tmpl/answer.php');
               }

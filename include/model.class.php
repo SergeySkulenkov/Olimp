@@ -285,7 +285,7 @@ class Model{
     echo "type=".$type;
     $query = "";
     if($type == 0){
-      $query =  "SELECT * FROM `user_question` LEFT JOIN admin_answer ON user_question.id = admin_answer.answer_id and admin_answer.answer_id = NULL order by date desc";
+      $query =  "SELECT * FROM `user_question`  where answer != 1 order by date desc";
       echo $query;
     }else if($type == 1){
       $query =  "SELECT * FROM `user_question`, admin_answer WHERE user_question.id = admin_answer.answer_id";
@@ -312,6 +312,7 @@ class Model{
   public function getUserAnswerContent($user_id){
     $sql = "SELECT * FROM `user_answer` WHERE tur_id = 1 and user_id = ".$user_id." order by file_date";
     $rows = $this->querySelectRows($sql);
+   
     if(!$rows){
         return false;
 
@@ -329,6 +330,23 @@ class Model{
 public function getUserAnswer($id){
   $sql = "SELECT * FROM `user_answer` WHERE tur_id = 1 and id = ".$id." order by file_date";
   return $this->querySelectRows($sql);
+}
+
+public function addJuryAnswer($user_id,$answer_id,$text){
+  $query = "INSERT INTO  jury_comments (`user_id`,`answer_id`,`comment_text`,`date_comment`) VALUES
+  ('".$user_id."','".$answer_id."','".$text."',NOW())";
+  $id = $this->queryInsert($query,true);
+  if(mysqli_error($this->db)){
+      return false;
+  }else{
+      return $id;
+  }
+
+}
+public function delJuryAnswer($id){
+  $query = "delete from jury_comments where id = ".$id."";
+  return $this->simpleQuery($query);
+
 }
 }
 ?>

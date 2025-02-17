@@ -8,7 +8,7 @@ if(!isset($_GET['user'])){
             <?php
         }
     }
-}else if($_GET['otvet']){
+}else if(isset($_GET['otvet'])){
     ?>
         <div class="answerBlock admin">
             <div class="answerFile">
@@ -28,9 +28,9 @@ if(!isset($_GET['user'])){
 
 
             </div>
-            <form action="index.php?id=<?=$_GET['id'];?>&user="<?=$_GET['id'];?> method = "post">
+            <form action="index.php?id=<?=$_GET['id'];?>&user=<?=$_GET['user'];?>&otvet_id=<?=$_GET['otvet']?>" method = "post">
                 <div class="textAreaBlock">
-                    <textarea name="question_<?=$_SESSION['question']?>" id="question"></textarea>
+                    <textarea name="adminAnswer" id="question"></textarea>
                 </div>
                 <div class="buttonblock register-buttonblock clearFloat">
                     <div class="right-buttonblock">
@@ -75,10 +75,12 @@ if(!isset($_GET['user'])){
                     <div class="jury_comments_name_date">
                         <div class="name">
                             Комментарий жюри
+                           
 
                         </div>
                         <div class="date">
                             <?= toRuDate($comment['date_comment']);?>
+                            
 
                         </div>
 
@@ -87,6 +89,7 @@ if(!isset($_GET['user'])){
                         <?=$comment['comment_text'];?>
 
                     </div>
+                    <a class = "delJrc" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&user='.$_GET['user'].'&delJrc='.$comment['id'];?>">Удалить</a>
 
                 </div>
 
