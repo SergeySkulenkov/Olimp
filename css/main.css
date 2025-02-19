@@ -433,6 +433,15 @@ a.otvet{
     height: 30px;
 
 }
+a.adminQotvet{
+  background: url('../images/edit.png') no-repeat center bottom;
+  background-size: 70%;
+  margin-left: 5px;
+  display: inline-block;
+  width:30px;
+  height: 30px;
+
+}
 a.delete{
     background: url('../images/delete.png') no-repeat center bottom;
     background-size: 70%;

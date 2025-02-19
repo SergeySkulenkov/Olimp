@@ -282,13 +282,12 @@ class Model{
     return $this->simpleQuery($query);
   }
   public function printAdminQuestion($user_id, $type=0){
-    echo "type=".$type;
     $query = "";
     if($type == 0){
       $query =  "SELECT * FROM `user_question`  where answer != 1 order by date desc";
-      echo $query;
     }else if($type == 1){
-      $query =  "SELECT * FROM `user_question`, admin_answer WHERE user_question.id = admin_answer.answer_id";
+      $query =  "SELECT user_question.id, tur_id, user_question.user_id AS uq_user_id, 
+                 question, answer, admin_answer.user_id AS ad_user_id , answer_id, date_comment, comment_text FROM `user_question`, admin_answer WHERE user_question.id = admin_answer.answer_id";
     }else if($type == 2){
       $query =  "SELECT * from user_question order by date desc";
     }
@@ -347,6 +346,15 @@ public function delJuryAnswer($id){
   $query = "delete from jury_comments where id = ".$id."";
   return $this->simpleQuery($query);
 
+}
+public function getUserQuestion($id){
+  $query = "select * from user_question where id = ".$id."";
+  $result = $this->simpleQuery($query);
+  return mysqli_fetch_assoc($result);
+}
+public function delAdminQ($id){
+  $query = "delete from user_question where id = ".$id."";
+  return $this->simpleQuery($query);
 }
 }
 ?>

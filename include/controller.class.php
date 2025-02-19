@@ -77,10 +77,16 @@ class Controller{
       }
       else if($this->model->pageID == 5){
         $type = 0;
-        if(isset($_GET['answer']))
-           $type = $_GET['answer'];
-        $content = $this->model->printAdminQuestion($_SESSION['user']['id'],$type);
-        return array('title'=>'Ответы', 'content'=>$content);
+        if(isset($_GET['adminQotvet'])){
+          $content = $this->model->getUserQuestion($_GET['adminQotvet']);
+          return array('title'=>'Ответы', 'content'=>$content);
+
+        }else {
+          if(isset($_GET['answer']))
+              $type = $_GET['answer'];
+           $content = $this->model->printAdminQuestion($_SESSION['user']['id'],$type);
+           return array('title'=>'Ответы', 'content'=>$content);
+        }
       }
 
   }
