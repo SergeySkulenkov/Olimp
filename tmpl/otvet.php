@@ -59,10 +59,36 @@ if(isset($_GET['adminQotvet'])){
                     <?= toRuDate($page['content']['date']);?>
                 </div>
             </div>
+            <?php
+            if(isset($page['content']['answers'])){ 
+                    foreach($page['content']['answers'] as $answer){ 
+                    ?>
+                    <div class="jury_comments">
+                    <div class="jury_comments_name_date">
+                        <div class="name">
+                            Ответ
+
+                        </div>
+                        <div class="date">
+                        <?= toRuDate($answer['date_comment']);?>
+                        </div>
+
+                    </div>
+                    <div class="comment_text">
+                        <p><?= $answer['comment_text'];?></p>
+
+                    </div>
+                    <a class = "delJrc" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&adminQotvet='.$_GET['adminQotvet'].'&user='.$_GET['user'].'&delAdA='.$answer['id'];?>" onclick="return confirm('Вы действительно хотите удалить ответ <?=$answer['comment_text']; ?>?')">Удалить</a>
+                </div>
+                        
+                    <?php 
+                    }
+                }
+                ?>
 
 
         </div>
-        <form action="index.php?id=<?=$_GET['id'];?>&adminQotvet=<?=$_GET['adminQotvet']?>" method = "post">
+        <form action="index.php?id=<?=$_GET['id'];?>&adminQotvet=<?=$_GET['adminQotvet']?>&user=<?=$_GET['user']?>" method = "post">
             <div class="textAreaBlock">
                 <textarea name="adminAnswer" id="question"></textarea>
             </div>
@@ -80,11 +106,18 @@ if(isset($_GET['adminQotvet'])){
 else{
     if(is_array($page['content'])){
         foreach($page['content'] as $value){
+            
             $id = $value['id'];
+            $user_id;
+            if(isset($value['uq_user_id'])){
+                $user_id = $value['uq_user_id'];
+            }else{
+                $user_id = $value['user_id'];
+            }
             echo '<div class="smallQuestionText" id="questionText_'.$id.'">';
             echo "<p style='display:block;' id='titleBlock_$id' onclick='showBlock($id)'> ". getStrPart($value['question'],100)." </p>";
             ?>
-                <a class = "adminQotvet" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&adminQotvet='.$value['id'];?>"></a>
+                <a class = "adminQotvet" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&adminQotvet='.$value['id'].'&user='.$user_id;?>"></a>
                 <a class = "delete" href="#" onclick="return deleteQuestion(<?=$value['id'];?> ,'<?=getStrPart($value['question'],50)?>')"></a>
             <?php
             echo '</div>';

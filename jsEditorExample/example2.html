@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+        margin: 0;
+        }
+
+        #text {
+        width: calc(100vw - 10);
+        min-height: 40px;
+        outline: 1px solid lightblue;
+        margin: 5px;
+        }
+
+        .active {
+        background-color: lightblue;
+        }
+
+        .boldi {
+        font-weight: bold;
+        }
+
+        .cursiv {
+        font-style: italic;
+        }
+
+        .underli {
+        text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="text" contenteditable="true" spellcheck="false"></div>
+    <button data-font="boldi" class="mode">Жирно</button>
+    <button data-font="cursiv" class="mode">Курсив</button>
+    <button data-font="underli" class="mode">Подчеркн</button>
+    <button data-action="save" onclick="saveContent()">SAVE</button>
+    <script>
+        let modeButtons = document.getElementsByClassName('mode');
+        let text = document.getElementById('text');
+        let modeClass = '';
+        let selRange = null;
+
+        [...modeButtons].forEach(b => {
+        b.addEventListener('click', e => {
+            e.target.classList.toggle('active');
+            modeClass = ([...modeButtons].map(b => b.classList.contains('active') ? b.getAttribute('data-font') : '')).join(' ');
+            if(selRange){
+            if(selRange.commonAncestorContainer == text){
+                let spans = [...text.getElementsByTagName('span')];
+                let start = spans.indexOf(selRange.startContainer.parentElement);
+                let end = spans.indexOf(selRange.endContainer.parentElement);
+                for(let i = start; i <= end; i++){
+                if(b.classList.contains('active')){
+                    spans[i].classList.add(b.getAttribute('data-font'));
+                } else {
+                    spans[i].classList.remove(b.getAttribute('data-font'));
+                }
+                }
+            }
+            }
+        })
+
+        })
+
+        text.onkeypress = e => {
+        if(/[a-zA-Z0-9,.А-ЯЁа-яё]/u.test(e.key.toString()) && e.key != 'Enter'){
+            e.preventDefault();
+
+            let span = document.createElement('span');
+            span.textContent = e.key;
+            span.className = modeClass;
+            e.target.append(span);
+        
+            let sel = window.getSelection();
+            sel.collapse(span, 1);
+        }
+        }
+
+        text.onmouseup = e => {
+        let sel = window.getSelection();
+        if(sel.type == 'Range'){
+        selRange = sel.getRangeAt(0);
+        [...modeButtons].forEach(b => {b.classList.remove('active')});
+        modeClass = '';
+        } else {
+        selRange = null;
+        }
+        }
+        function saveContent(){
+            let content = document.getElementById('text').innerHTML;
+            alert(content);
+        }
+        
+    </script>
+</body>
+</html>

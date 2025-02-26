@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ***********************
+// ШАГ 1: Выводим iframe и получаем доступ к нему
+// ***********************
+
+// Выводим в HTML-поток iframe
+document.write("<iframe scrolling='no' frameborder='no' src='#' id='frameId' name='frameId'></iframe><br/>");
+// Определим Gecko-браузеры, т.к. они отличаются в своей работе от Оперы и IE
+var isGecko = navigator.userAgent.toLowerCase().indexOf("gecko") != -1;
+// Получаем доступ к объектам window & document для ифрейма
+var iframe = (isGecko) ? document.getElementById("frameId") : frames["frameId"];
+var iWin = (isGecko) ? iframe.contentWindow : iframe.window;
+var iDoc = (isGecko) ? iframe.contentDocument : iframe.document;
+
+// ***********************
+// ШАГ 2: Добавим на пустую страницу ифрейма произвольный HTML-код
+// ***********************
+
+// Формируем HTML-код
+iHTML = "<html><head>\n";
+iHTML += "<style>\n";
+iHTML += "body, div, p, td {font-size:12px; font-family:tahoma; margin:0px; padding:0px;}";
+iHTML += "body {margin:5px;}";
+iHTML += "</style>\n";
+iHTML += "<body><u>Содержимое</u> с <b>HTML</b>-<i>разметкой</i></body>";
+iHTML += "</html>";
+// Добавляем его с помощью методов объекта document
+iDoc.open();
+iDoc.write(iHTML);
+iDoc.close();
+
+// ***********************
+// ШАГ 3: Инициализация свойства designMode объекта document
+// ***********************
+
+if (!iDoc.designMode) alert("Визуальный режим редактирования не поддерживается Вашим браузером");
+else iDoc.designMode = (isGecko) ? "on" : "On";
+
+// ***********************
+// ШАГ 4: Простейшие элементы редактирования: жирность, курсив, подчеркивание
+// ***********************
+
+// Выведем HTML-код этих элементов
+document.write("<input type='button' value='Ж' onclick='setBold()' class='bold' />");
+document.write("<input type='button' value='К' onclick='setItal()' class='ital' />");
+document.write("<input type='button' value='Ч' onclick='setUnder()' class='under' />");
+// Запишем код функции, для выставления форматирования
+// Используется метод execCommand объекта document
+function setBold() {
+iWin.focus();
+iWin.document.execCommand("bold", null, "");
+}
+function setItal() {
+iWin.focus();
+iWin.document.execCommand("italic", null, "");
+}
+function setUnder() {
+iWin.focus();
+iWin.document.execCommand("underline", null, "");
+}
+    </script>
+</body>
+</html>

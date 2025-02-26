@@ -287,7 +287,7 @@ class Model{
       $query =  "SELECT * FROM `user_question`  where answer != 1 order by date desc";
     }else if($type == 1){
       $query =  "SELECT user_question.id, tur_id, user_question.user_id AS uq_user_id, 
-                 question, answer, admin_answer.user_id AS ad_user_id , answer_id, date_comment, comment_text FROM `user_question`, admin_answer WHERE user_question.id = admin_answer.answer_id";
+                 question, answer, admin_answer.user_id AS ad_user_id , answer_id, date_comment, comment_text FROM `user_question`, admin_answer WHERE user_question.id = admin_answer.answer_id GROUP BY id";
     }else if($type == 2){
       $query =  "SELECT * from user_question order by date desc";
     }
@@ -352,9 +352,34 @@ public function getUserQuestion($id){
   $result = $this->simpleQuery($query);
   return mysqli_fetch_assoc($result);
 }
+public function getAdminAnswer($id){
+  $query = "select * from admin_answer where answer_id = ".$id."";
+  $result = $this->querySelectRows($query);
+  return $result;
+
+}
+public function delAdminAnswer($id){
+  $query = "delete from admin_answer where id = ".$id."";
+  return $this->simpleQuery($query);
+}
+
 public function delAdminQ($id){
   $query = "delete from user_question where id = ".$id."";
   return $this->simpleQuery($query);
+}
+public function addAdminAnswer($answer_id,$text,$user_id){
+  $query = "INSERT INTO  admin_answer  (`user_id`,`answer_id`,`comment_text`,`date_comment`) VALUES
+  ('".$user_id."','".$answer_id."','".$text."',NOW())";
+  $id = $this->queryInsert($query,true);
+  $sql = "UPDATE user_question set answer=1 where id = '".$answer_id."'";
+  $i = $this->queryInsert($sql,true);
+  if(mysqli_error($this->db)){
+      return false;
+  }else{
+      return $id;
+
+  }
+
 }
 }
 ?>

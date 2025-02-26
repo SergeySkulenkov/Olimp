@@ -79,6 +79,10 @@ class Controller{
         $type = 0;
         if(isset($_GET['adminQotvet'])){
           $content = $this->model->getUserQuestion($_GET['adminQotvet']);
+          $answers = $this->model->getAdminAnswer($_GET['adminQotvet']);
+          if(is_array($answers)){
+            $content['answers'] = $answers;
+          }
           return array('title'=>'Ответы', 'content'=>$content);
 
         }else {
