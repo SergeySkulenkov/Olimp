@@ -108,21 +108,17 @@ class Model{
     return $this->querySelectRow($query);
 
   }
+  public function getTur($id){
+    $sql = "SELECT * FROM tur WHERE olimp_id = ".$id;
+    return $this->querySelectRow($sql);
+  }
   public function getOlimpFromId($id){
     $query = "SELECT * FROM olimp WHERE id = ".$id;
     return $this->querySelectRow($query);
 
   }
-  public function getOlimpList($status = false){
-    $query = "";
-    if ($status === false){
-      $query = "SELECT * FROM olimp";
-
-    }else{
-        $query = "SELECT * FROM olimp WHERE status = ".$status;
-
-    }
-
+  public function getOlimpList(){
+    $query = "SELECT * FROM olimp";
     return $this->querySelectRows($query);
 
   }

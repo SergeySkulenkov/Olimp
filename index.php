@@ -5,7 +5,7 @@ include('run.php');
 $controller->checkLogin();
 //$model->simpleQuery("UPDATE olimp SET title ='new title' WHERE id = 1");
 //$model->createOimp("Новая олимпиада", "132124",1);
-$res=$model->getOlimpList();
+//$res=$model->getOlimpList();
 if(isset($_POST['adminAnswer'])){
   $model->addAdminAnswer($_GET['adminQotvet'],$_POST['adminAnswer'],$_GET['user']);
 
@@ -17,11 +17,16 @@ if(isset($_GET['delAdA'])){
   $model-> delAdminAnswer($_GET['delAdA']);
 }
 
+
 $pageName = $controller->getPageName();
 $deleteFileError = "";
 $page = $controller->getPageContent();
 if($controller->checkUploadUserFile()){
     header("Location:".INDEX_PAGE."?id=".$_GET['id']);
+
+}
+if($controller->checkUploadOlimp()){
+  header("Location:".INDEX_PAGE."?id=".$_GET['id']);
 
 }
 if(isset($_GET['del'])){
@@ -74,6 +79,7 @@ if(isset($_GET['id']) && $_GET['id']== 3){
 
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -115,6 +121,8 @@ if(isset($_GET['id']) && $_GET['id']== 3){
               include(ROOT_PATH.'tmpl/question.php');
              }else if(isset($_GET['id']) && $_GET['id']==5){
               include(ROOT_PATH.'tmpl/otvet.php');
+             }else if(isset($_GET['id']) && $_GET['id']==6){
+              include(ROOT_PATH.'tmpl/olimp.php');
              }else{
                 if($_SESSION['user']['role'] == "super_admin"){
                  ?>

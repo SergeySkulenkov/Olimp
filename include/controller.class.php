@@ -92,6 +92,20 @@ class Controller{
            return array('title'=>'Ответы', 'content'=>$content);
         }
       }
+      else if($this->model->pageID == 6){
+        if(isset($_GET['olimp_id'])){
+          $content = $this->model->getOlimp($_GET['olimp_id']);
+          $turs = $this->model->getTur($_GET['olimp_id']);
+          if(is_array($turs)){
+            $content['turs'] = $turs;
+          }
+          return array('title'=>'Ответы', 'content'=>$content);
+        }else{
+          $content = $this->model->getOlimpList();
+          return array('title'=>'Профиль', 'content'=>$content);
+        }
+       
+      }
 
   }
   public function logOut(){
@@ -147,6 +161,17 @@ class Controller{
       $this->model->transaction_rollback();
       return false;
 
+  }
+  public function checkUploadOlimp(){
+    if(!isset($_GET['olimp'])){
+      return false;
+  }
+  if(isset($_POST['olimpName']) && isset($_POST['olimpName'])){
+    $this->model->createOimp($_POST['olimpName'],$_POST['olimpCode'],$_POST['status']); 
+    return true;
+  }else{
+    return false;
+  }
   }
 }
 
