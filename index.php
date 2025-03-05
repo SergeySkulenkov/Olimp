@@ -16,6 +16,9 @@ if(isset($_GET['delJrc'])){
 if(isset($_GET['delAdA'])){
   $model-> delAdminAnswer($_GET['delAdA']);
 }
+if(isset($_GET['edit']) && $_GET['edit'] == 2){
+  $model->updateContent($_POST["editor"]);
+}
 
 
 $pageName = $controller->getPageName();
@@ -87,9 +90,9 @@ if(isset($_GET['id']) && $_GET['id']== 3){
     <meta charset="utf-8">
     <title><?= $page['title'];?></title>
     <link rel="stylesheet" href="css/main.css">
-    <script type="text/javascript" src="js/jquery-3.7.1.min.js">
-
-    </script>
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <div class="left">
@@ -131,11 +134,107 @@ if(isset($_GET['id']) && $_GET['id']== 3){
                   </div>
                  <?php 
                 }
-                if(isset($_GET['edit']) && $_GET['edit']==1){
+                if(isset($_GET['edit']) && ($_GET['edit']==1 || $_GET['edit']==2)){
                   ?>
-                    <form action="<?=INDEX_PAGE;?>?edit=1&id=1" method="post">
-                      <textarea name="editor" id="editor"><?=$page['content']?></textarea>
-                      <input type="submit" value="Сохранить">
+                  <!--     editor   -->
+                            <div class="toolbar">
+              <a href="#" data-command='undo'><i class='fa fa-undo'></i></a>
+              <a href="#" data-command='redo'><i class='fa fa-repeat'></i></a>
+              <div class="fore-wrapper"><i class='fa fa-font' style='color:#C96;'></i>
+                <div class="fore-palette">
+                </div>
+              </div>
+              <div class="back-wrapper"><i class='fa fa-font' style='background:#C96;'></i>
+                <div class="back-palette">
+                </div>
+              </div>
+              <a href="#" data-command='bold'><i class='fa fa-bold'></i></a>
+              <a href="#" data-command='italic'><i class='fa fa-italic'></i></a>
+              <a href="#" data-command='underline'><i class='fa fa-underline'></i></a>
+              <a href="#" data-command='strikeThrough'><i class='fa fa-strikethrough'></i></a>
+              <a href="#" data-command='justifyLeft'><i class='fa fa-align-left'></i></a>
+              <a href="#" data-command='justifyCenter'><i class='fa fa-align-center'></i></a>
+              <a href="#" data-command='justifyRight'><i class='fa fa-align-right'></i></a>
+              <a href="#" data-command='justifyFull'><i class='fa fa-align-justify'></i></a>
+              <a href="#" data-command='indent'><i class='fa fa-indent'></i></a>
+              <a href="#" data-command='outdent'><i class='fa fa-outdent'></i></a>
+              <a href="#" data-command='insertUnorderedList'><i class='fa fa-list-ul'></i></a>
+              <a href="#" data-command='insertOrderedList'><i class='fa fa-list-ol'></i></a>
+              <a href="#" data-command='h1'>H1</a>
+              <a href="#" data-command='h2'>H2</a>
+              <a href="#" data-command='createlink'><i class='fa fa-link'></i></a>
+              <a href="#" data-command='unlink'><i class='fa fa-unlink'></i></a>
+              <a href="#" data-command='insertimage'><i class='fa fa-image'></i></a>
+              <a href="#" data-command='p'>P</a>
+              <a href="#" data-command='subscript'><i class='fa fa-subscript'></i></a>
+              <a href="#" data-command='superscript'><i class='fa fa-superscript'></i></a>
+              <a href="#" data-command='save'><i class='fa fa-save'></i></a>
+              <a href="#" data-command='code'><i class='fa fa-code'></i></a>
+
+            </div>
+            <div id='editor' contenteditable><?=$page['content']?></div>
+              
+        
+            <script>
+            function saveText(){
+              let text = document.getElementById("editor").innerHTML;
+              document.getElementById("editorHide").innerHTML = text;
+              document.getElementById("editorForm").submit();
+              
+            }
+            var colorPalette = ['000000', 'FF9966', '6699FF', '99FF66', 'CC0000', '00CC00', '0000CC', '333333', '0066FF', 'FFFFFF'];
+            var forePalette = $('.fore-palette');
+            var backPalette = $('.back-palette');
+
+            var codeMode = false;
+
+            for (var i = 0; i < colorPalette.length; i++) {
+              forePalette.append('<a href="#" data-command="forecolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item"></a>');
+              backPalette.append('<a href="#" data-command="backcolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item"></a>');
+            }
+
+            $('.toolbar a').click(function(e) {
+              var command = $(this).data('command');
+              if (command == 'h1' || command == 'h2' || command == 'p') {
+                document.execCommand('formatBlock', false, command);
+              }
+              if (command == 'forecolor' || command == 'backcolor') {
+                document.execCommand($(this).data('command'), false, $(this).data('value'));
+              }
+              if (command == 'createlink' || command == 'insertimage') {
+                url = prompt('Enter the link here: ', 'http:\/\/');
+                document.execCommand($(this).data('command'), false, url);
+              } else document.execCommand($(this).data('command'), false, null);
+              if(command== 'save'){
+                 saveText();
+              }
+              if(command == 'code'){
+                codeMode=!codeMode;
+                if(codeMode){
+                  let html = document.getElementById("editor").innerHTML;
+                  document.getElementById("editorHide").innerHTML = html;
+                  document.getElementById("editorHide").style.display='block';
+                  document.getElementById("editor").style.display='none';
+                }else{
+                  let html = document.getElementById("editorHide").value;
+                  document.getElementById("editor").innerHTML = html;
+                  document.getElementById("editorHide").style.display='none';
+                  document.getElementById("editor").style.display='block';
+                  
+                }
+                
+
+              }
+
+            });
+         
+
+            </script>
+
+                  <!--     .editor   -->
+                    <form action="<?=INDEX_PAGE;?>?edit=2&id=1"  id="editorForm" method="post">
+                      <textarea name="editor" id="editorHide"></textarea>
+                      <button onclick="saveText();">Сохранить</button>
                     </form>
                   <?php
 

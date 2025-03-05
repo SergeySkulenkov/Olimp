@@ -375,7 +375,12 @@ public function addAdminAnswer($answer_id,$text,$user_id){
       return $id;
 
   }
-
+}
+public function updateContent($content){
+  $sql = "UPDATE pages set content=? where id=1";
+  $stmt = mysqli_prepare($this->db,$sql);
+  mysqli_stmt_bind_param($stmt,"s",$content);
+  mysqli_stmt_execute($stmt);
 }
 }
 ?>
