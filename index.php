@@ -6,9 +6,8 @@ $controller->checkLogin();
 //$model->simpleQuery("UPDATE olimp SET title ='new title' WHERE id = 1");
 //$model->createOimp("Новая олимпиада", "132124",1);
 //$res=$model->getOlimpList();
-if(isset($_POST['adminAnswer'])){
-  $model->addAdminAnswer($_GET['adminQotvet'],$_POST['adminAnswer'],$_GET['user']);
-
+if(isset($_POST['JuryAnswer'])){
+  $model->addJuryAnswer($_GET['user'],$_GET['otvet_id'],$_POST['JuryAnswer'],);// ответ на задание
 }
 if(isset($_GET['delJrc'])){
   $model-> delJuryAnswer($_GET['delJrc']);

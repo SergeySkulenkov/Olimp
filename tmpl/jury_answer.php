@@ -30,7 +30,7 @@ if(!isset($_GET['user'])){
             </div>
             <form action="index.php?id=<?=$_GET['id'];?>&user=<?=$_GET['user'];?>&otvet_id=<?=$_GET['otvet']?>" method = "post">
                 <div class="textAreaBlock">
-                    <textarea name="adminAnswer" id="question"></textarea>
+                    <textarea name="JuryAnswer" id="question"></textarea>
                 </div>
                 <div class="buttonblock register-buttonblock clearFloat">
                     <div class="right-buttonblock">

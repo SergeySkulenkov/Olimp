@@ -363,8 +363,9 @@ public function delAdminQ($id){
   $query = "delete from user_question where id = ".$id."";
   return $this->simpleQuery($query);
 }
+/*
 public function addAdminAnswer($answer_id,$text,$user_id){
-  $query = "INSERT INTO  admin_answer  (`user_id`,`answer_id`,`comment_text`,`date_comment`) VALUES
+  $query = "INSERT INTO  jury_comments  (`user_id`,`answer_id`,`comment_text`,`date_comment`) VALUES
   ('".$user_id."','".$answer_id."','".$text."',NOW())";
   $id = $this->queryInsert($query,true);
   $sql = "UPDATE user_question set answer=1 where id = '".$answer_id."'";
@@ -376,6 +377,7 @@ public function addAdminAnswer($answer_id,$text,$user_id){
 
   }
 }
+  */
 public function updateContent($content){
   $sql = "UPDATE pages set content=? where id=1";
   $stmt = mysqli_prepare($this->db,$sql);
