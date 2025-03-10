@@ -740,3 +740,73 @@ a.palette-item:hover {
 #editorHide{
   display: none;
 }
+.orangeButton{
+  background-color: #ea8946;
+  border: solid 1px #b86326;
+  color:#f5e6db;
+}
+.blueButton{
+  background-color: #1d4896;
+  border: #173a79;
+  color:#ceddf8;
+
+}
+.editButton, .saveButton{
+  display: inline-block;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 80px;
+  margin-top: 10px;
+  text-decoration: none;
+  
+}
+.orangeButton:hover{
+  background-color:#f09555 ;
+  color:#fff;
+}
+.blueButton:hover{
+  background-color:#2d5eba ;
+  color:#fff;
+}
+.editButton .fa-pencil, .saveButton .fa-save{
+  margin-right: 10px;
+}
+.editorStyle{
+  margin-left: 80px;
+  margin-top: 20px;
+}
+textarea[name=editor]{
+  height: 400px;
+  margin-top: 10px;
+}
+
+.userList{
+  text-decoration: none;
+  color: #213060;
+}
+.userList:hover{
+  color: #3766bc;
+}
+
+.tab{
+  text-decoration: none;
+  display: inline-block;
+  color: #53608a;
+  padding: 8px 0px;
+  border-bottom: 3px solid #fff;
+  margin-right: 20px;
+
+}
+.tab:hover{
+  color: #3766bc;
+}
+.tab.active{
+  border-bottom: 5px solid #284194;
+  color:#284194;
+}
+
+.tabBar{
+  margin-top: 5px;
+  margin-left: 80px;
+}
+

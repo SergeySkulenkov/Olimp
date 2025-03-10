@@ -110,7 +110,7 @@ class Model{
   }
   public function getTur($id){
     $sql = "SELECT * FROM tur WHERE olimp_id = ".$id;
-    return $this->querySelectRow($sql);
+    return $this->querySelectRows($sql);
   }
   public function getOlimpFromId($id){
     $query = "SELECT * FROM olimp WHERE id = ".$id;

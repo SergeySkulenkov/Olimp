@@ -9,7 +9,7 @@ if(is_array($page['content'])){
                 <div class="img"></div>
                 <div class="fileName">
                     <div class="fileNameContainer">
-                    <a  class="name" target="_blank" href=""><?= $page['content']['title'];?></a>
+                    <a  class="name" href=""><?= $page['content']['title'];?></a>
                     <div class="answerData">
                         <?= $status[$page['content']['status']];?> код: <?= $page['content']['code'];?>
                         </div>
@@ -17,9 +17,16 @@ if(is_array($page['content'])){
                 </div>
             </div>
             <?php
+            //print_r($page['content']['turs']);
             if(isset($page['content']['turs'])){
                 foreach($page['content']['turs'] as $turs){
-                    //$turs['number'];
+                    ?>
+                    <div class="smallQuestionText"style="clear:both">
+                    <?php
+                        echo $turs['number'].")  Начало: ".$turs['date_start']." Конец: ".$turs['date_end'];
+                    ?>
+                    </div>
+                    <?php
                 }
 
             }
@@ -34,7 +41,7 @@ if(is_array($page['content'])){
                 <div class="img"></div>
                 <div class="fileName">
                     <div class="fileNameContainer">
-                    <a  class="name" target="_blank" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&olimp_id='.$value['id'];?>"><?= $value['title'];?></a>
+                    <a  class="name" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&olimp_id='.$value['id'];?>"><?= $value['title'];?></a>
                     <div class="answerData">
                         <?= $status[$value['status']];?> код: <?= $value['code'];?>
                         </div>
@@ -43,25 +50,31 @@ if(is_array($page['content'])){
 
 
             </div>
+            
 
             <?php
 
         ?>
+    
 
         </div>
 
 
         <?php
         }
+        ?>
+        <div class="downloadButtonBlock">
+            <div class="ico"></div>
+            <button type="button" class="downloadButton" name="button">Добавить</button>
+        </div>
+        <?php
+        
     }
    
 }
 
  ?>
- <div class="downloadButtonBlock">
-     <div class="ico"></div>
-     <button type="button" class="downloadButton" name="button">Добавить</button>
- </div>
+
 
 
 

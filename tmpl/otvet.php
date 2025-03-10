@@ -36,10 +36,10 @@
         return false;
     }
 </script>
-<div>
-    <a href="<?=INDEX_PAGE;?>/?id=5">Без ответа</a>
-    <a href="<?=INDEX_PAGE;?>/?id=5&answer=1">С ответом</a>
-    <a href="<?=INDEX_PAGE;?>/?id=5&answer=2">Все</a>
+<div class="tabBar">
+    <a class="tab active" href="<?=INDEX_PAGE;?>/?id=5">Без ответа</a>
+    <a class="tab" href="<?=INDEX_PAGE;?>/?id=5&answer=1">С ответом</a>
+    <a class="tab" href="<?=INDEX_PAGE;?>/?id=5&answer=2">Все</a>
     
 </div>
 <?php 

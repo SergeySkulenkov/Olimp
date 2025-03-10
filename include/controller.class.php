@@ -89,7 +89,7 @@ class Controller{
           if(isset($_GET['answer']))
               $type = $_GET['answer'];
            $content = $this->model->printAdminQuestion($_SESSION['user']['id'],$type);
-           return array('title'=>'Ответы', 'content'=>$content);
+           return array('title'=>'Вопросы', 'content'=>$content);
         }
       }
       else if($this->model->pageID == 6){
@@ -99,10 +99,10 @@ class Controller{
           if(is_array($turs)){
             $content['turs'] = $turs;
           }
-          return array('title'=>'Ответы', 'content'=>$content);
+          return array('title'=>'Олимпиады', 'content'=>$content);
         }else{
           $content = $this->model->getOlimpList();
-          return array('title'=>'Профиль', 'content'=>$content);
+          return array('title'=>'Олимпиады', 'content'=>$content);
         }
        
       }

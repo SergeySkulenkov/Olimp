@@ -1,15 +1,19 @@
 <?php
 if(!isset($_GET['user'])){
+    ?>
+    <p>УAловите свое руки мощные вдохновениевкладывает в ваши творческие инструменты, которые обеспечивают абсолютный контроль над текстом. их помощью вы любым элементам тени, эффекты с использованием прозрачности. Они позволят вам создавать элегантные таблицы. И не бойтесь экспериментировать у вас всегда ть отменить или выполнить повторно действия.</p>
+    <?php
     echo $deleteFileError;
     if(is_array($page['content'])){
         foreach ($page['content'] as $key => $value) {
             ?>
-            <div><a href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&user='.$value['user_id'];?>"><?= $value['username'];?></a></div>
+            <div class="smallQuestionText"><a class="userList" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&user='.$value['user_id'];?>"><?= $value['username'];?></a></div>
             <?php
         }
     }
 }else if(isset($_GET['otvet'])){
     ?>
+    <p>УAловите свое руки мощные вдохновениевкладывает в ваши творческие</p>
         <div class="answerBlock admin">
             <div class="answerFile">
                 <div class="img"></div>
@@ -44,6 +48,9 @@ if(!isset($_GET['user'])){
 
 }else{
     if(is_array($page['content'])){
+        ?>
+        <p>УAловите свое руки мощные вдохновениевкладывает в ваши творческие</p>
+        <?php
         
         foreach ($page['content'] as $key => $value) {
         ?>
