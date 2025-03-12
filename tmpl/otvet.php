@@ -37,9 +37,19 @@
     }
 </script>
 <div class="tabBar">
-    <a class="tab active" href="<?=INDEX_PAGE;?>/?id=5">Без ответа</a>
-    <a class="tab" href="<?=INDEX_PAGE;?>/?id=5&answer=1">С ответом</a>
-    <a class="tab" href="<?=INDEX_PAGE;?>/?id=5&answer=2">Все</a>
+    <?php
+        $active = array("","",""); 
+        if(!isset($_GET['answer'])){
+            $active[0] = " active";
+        }else if($_GET['answer']==1){
+            $active[1] = " active";
+        }else{
+            $active[2] = " active";
+        }
+    ?>
+    <a id="noOtv" class="tab <?=$active[0]?>" href="<?=INDEX_PAGE;?>?id=5">Без ответа</a>
+    <a id="otv" class="tab <?=$active[1]?>" href="<?=INDEX_PAGE;?>?id=5&answer=1">С ответом</a>
+    <a id="vce" class="tab<?=$active[2]?>" href="<?=INDEX_PAGE;?>?id=5&answer=2">Все</a>
     
 </div>
 <?php 
@@ -51,7 +61,7 @@ if(isset($_GET['adminQotvet'])){
             <div class="fileName">
                 <div class="fileNameContainer">
                     <a  class="name" target="_blank" href="<?= $path;?>"><?= $page['content']['question'];?></a>
-                    <a class = "delete" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&del='.$page['content'][$_GET['adminQotvet']]['id'];?>" onclick="return confirm('Вы действительно хотите удалить вопрос <?= $page['content']['question'];?>?')"></a>
+                    <a class = "delete" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&del='.$page['content'][$_GET['adminQotvet']]['id'];?>" onclick="return confirm('Вы действительно хотите удалить вопрос <?= $page['content']['question'];?>?')"></a>
                     
                 </div>
 
@@ -78,7 +88,7 @@ if(isset($_GET['adminQotvet'])){
                         <p><?= $answer['comment_text'];?></p>
 
                     </div>
-                    <a class = "delJrc" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&adminQotvet='.$_GET['adminQotvet'].'&user='.$_GET['user'].'&delAdA='.$answer['id'];?>" onclick="return confirm('Вы действительно хотите удалить ответ <?=$answer['comment_text']; ?>?')">Удалить</a>
+                    <a class = "delJrc" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&adminQotvet='.$_GET['adminQotvet'].'&user='.$_GET['user'].'&delAdA='.$answer['id'];?>" onclick="return confirm('Вы действительно хотите удалить ответ <?=$answer['comment_text']; ?>?')">Удалить</a>
                 </div>
                         
                     <?php 
@@ -117,7 +127,7 @@ else{
             echo '<div class="smallQuestionText" id="questionText_'.$id.'">';
             echo "<p style='display:block;' id='titleBlock_$id' onclick='showBlock($id)'> ". getStrPart($value['question'],100)." </p>";
             ?>
-                <a class = "adminQotvet" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&adminQotvet='.$value['id'].'&user='.$user_id;?>"></a>
+                <a class = "adminQotvet" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&adminQotvet='.$value['id'].'&user='.$user_id;?>"></a>
                 <a class = "delete" href="#" onclick="return deleteQuestion(<?=$value['id'];?> ,'<?=getStrPart($value['question'],50)?>')"></a>
             <?php
             echo '</div>';
@@ -162,4 +172,6 @@ else{
         }
     }
 }
+?>
+<script type="text/javascript" src="../js/style.js"></script>
 

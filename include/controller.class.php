@@ -166,9 +166,15 @@ class Controller{
     if(!isset($_GET['olimp'])){
       return false;
   }
-  if(isset($_POST['olimpName']) && isset($_POST['olimpName'])){
-    $this->model->createOimp($_POST['olimpName'],$_POST['olimpCode'],$_POST['status']); 
-    return true;
+  if(isset($_POST['olimpName']) && isset($_POST['olimpCode'])){
+    if(!empty(trim($_POST['olimpName'])) && !empty(trim($_POST['olimpCode']))){
+      $this->model->createOimp($_POST['olimpName'],$_POST['olimpCode'],$_POST['status']); 
+      return true;
+    }
+    else{
+      return false;
+    }
+    
   }else{
     return false;
   }

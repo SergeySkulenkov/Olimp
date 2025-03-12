@@ -41,7 +41,7 @@ if(is_array($page['content'])){
                 <div class="img"></div>
                 <div class="fileName">
                     <div class="fileNameContainer">
-                    <a  class="name" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&olimp_id='.$value['id'];?>"><?= $value['title'];?></a>
+                    <a  class="name" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&olimp_id='.$value['id'];?>"><?= $value['title'];?></a>
                     <div class="answerData">
                         <?= $status[$value['status']];?> код: <?= $value['code'];?>
                         </div>
@@ -88,11 +88,11 @@ if(is_array($page['content'])){
         </div>
     </div>
     <div class="windowContent">
-        <form class="" action="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&olimp=1';?>" method="post">
-            <input type="text" name="olimpName" value="" placeholder="Название">
-            <input type="text" name ="olimpCode" value="" placeholder="Код"> 
+        <form class="" action="<?= INDEX_PAGE.'?id='.$_GET['id'].'&olimp=1';?>" method="post">
+            <input class="windowInput" type="text" name="olimpName" value="" placeholder="Название">
+            <input class="windowInput" type="text" name ="olimpCode" value="" placeholder="Код"> 
             <br>
-            <select name="status" id="status">
+            <select name="status" id="status" class="windowInput">
                 <option value="0">Не активна</option>
                 <option value="1">Активна</option>
             </select>

@@ -10,6 +10,10 @@
     }
    ?>
 
-      <a class="<?= $active;?>" id="<?= $item['css']; ?>" href="<?= INDEX_PAGE.'?id='.$item['id']; ?>"><div class="ico"></div><div class="text"><?= $item['name']; ?></div></a>
+      <a class="<?= $active;?>" id="<?= $item['css']; ?>" href="<?= INDEX_PAGE.'?id='.$item['id']; ?>"><div class="ico"></div><div class="text"><?= $item['name']; ?></div><?php
+        if($active != ""){
+          echo '<div class="rightPartBg"></div>';
+        }
+      ?></a>
   <?php }  ?>
 </div>

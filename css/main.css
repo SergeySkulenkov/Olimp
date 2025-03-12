@@ -49,6 +49,7 @@ body{
   height: 56px;
   font-size: 20px;
   text-decoration: none;
+  
 }
 .ico{
   width: 30px;
@@ -81,10 +82,19 @@ body{
 }
 
 .menu a.active{
-  background: #ffffff;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   color:  #213060;
+  background: #fff;
+  position: relative;
+}
+.rightPartBg{
+  background: url("../images/rightBgPart.png") no-repeat right center;
+  position: absolute;
+  right: 0px;
+  top: -11px;
+  width: 15px;
+  height: 76px;
 }
 #otvet.active .ico{
   background: #213060 url('../images/otveti_active.png') no-repeat center center;
@@ -596,7 +606,7 @@ a.delete{
     border: 2px solid #88aed8;
     border-radius: 10px;
     width: 100%;
-    height: 30px;
+    height: 35px;
     color: #f5f6f7;
     font-size: 16px;
     cursor: pointer;
@@ -810,3 +820,26 @@ textarea[name=editor]{
   margin-left: 80px;
 }
 
+.windowInput{
+  background-color: #d8d8d8;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  outline: none;
+  padding: 7px 10px;
+  box-sizing: border-box;
+  font-size: 12pt;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 5px 0px;
+
+}
+.windowInput:focus {
+  border-color: #c8c8c8;
+  background-color: #e8e8e8;
+
+}
+.windowInput::placeholder {
+  color: #757474;
+  font-size: 12pt;
+}

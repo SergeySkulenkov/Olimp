@@ -58,7 +58,7 @@ if(isset($_GET['id']) && $_GET['id']== 4){
   $email = $page['content']['email'];
 
 }
-if(isset($_GET['id']) && $_GET['id']== 3){
+if(isset($_GET['id']) && $_GET['id']== 3 && isset($_SESSION['question'])){
   $num = $_SESSION['question'];
   if(isset($_POST['question_'.$num])){
     

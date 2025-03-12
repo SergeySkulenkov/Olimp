@@ -7,7 +7,7 @@ if(!isset($_GET['user'])){
     if(is_array($page['content'])){
         foreach ($page['content'] as $key => $value) {
             ?>
-            <div class="smallQuestionText"><a class="userList" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&user='.$value['user_id'];?>"><?= $value['username'];?></a></div>
+            <div class="smallQuestionText"><a class="userList" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&user='.$value['user_id'];?>"><?= $value['username'];?></a></div>
             <?php
         }
     }
@@ -21,7 +21,7 @@ if(!isset($_GET['user'])){
                     <div class="fileNameContainer">
                         <?php $path=INDEX_PAGE."upload/users/".$_GET['user']."/".$page['content'][0]['file_name']; ?>
                         <a  class="name" target="_blank" href="<?= $path;?>"><?= $page['content'][0]['file_name'];?></a>
-                        <a class = "delete" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&del='.$page['content'][0]['id'];?>" onclick="return confirm('Вы действительно хотите удалить файл <?= $page['content'][0]['file_name'];?>?')"></a>
+                        <a class = "delete" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&del='.$page['content'][0]['id'];?>" onclick="return confirm('Вы действительно хотите удалить файл <?= $page['content'][0]['file_name'];?>?')"></a>
                         
                     </div>
 
@@ -61,8 +61,8 @@ if(!isset($_GET['user'])){
                     <div class="fileNameContainer">
                         <?php $path=INDEX_PAGE."upload/users/".$_GET['user']."/".$value['file_name']; ?>
                         <a  class="name" target="_blank" href="<?= $path;?>"><?= $value['file_name'];?></a>
-                        <a class = "otvet" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&otvet='.$value['id'];?>&user=<?=$_GET['user']?>"></a>
-                        <a class = "delete" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&del='.$value['id'];?>" onclick="return confirm('Вы действительно хотите удалить файл <?= $value['file_name'];?>?')"></a>
+                        <a class = "otvet" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&otvet='.$value['id'];?>&user=<?=$_GET['user']?>"></a>
+                        <a class = "delete" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&del='.$value['id'];?>" onclick="return confirm('Вы действительно хотите удалить файл <?= $value['file_name'];?>?')"></a>
                         
                     </div>
 
@@ -96,7 +96,7 @@ if(!isset($_GET['user'])){
                         <?=$comment['comment_text'];?>
 
                     </div>
-                    <a class = "delJrc" href="<?= INDEX_PAGE.'/?id='.$_GET['id'].'&user='.$_GET['user'].'&delJrc='.$comment['id'];?>">Удалить</a>
+                    <a class = "delJrc" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&user='.$_GET['user'].'&delJrc='.$comment['id'];?>"  onclick="return confirm('Вы действительно хотите удалить ответ  <?= $comment['comment_text'];?>')">Удалить</a>
 
                 </div>
 
