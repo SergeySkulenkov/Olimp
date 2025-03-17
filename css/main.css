@@ -485,6 +485,9 @@ a.delete{
     border-radius: 10px;
     margin-bottom: 10px;
 }
+.jury_comments.otvet{
+  margin-top: 10px;
+}
 .jury_comments p{
     margin: 0px 10px 10px 10px;
     font-size: 16px;

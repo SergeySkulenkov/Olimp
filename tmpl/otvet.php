@@ -73,7 +73,7 @@ if(isset($_GET['adminQotvet'])){
             if(isset($page['content']['answers'])){ 
                     foreach($page['content']['answers'] as $answer){ 
                     ?>
-                    <div class="jury_comments">
+                    <div class="jury_comments otvet">
                     <div class="jury_comments_name_date">
                         <div class="name">
                             Ответ
@@ -88,7 +88,7 @@ if(isset($_GET['adminQotvet'])){
                         <p><?= $answer['comment_text'];?></p>
 
                     </div>
-                    <a class = "delJrc" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&adminQotvet='.$_GET['adminQotvet'].'&user='.$_GET['user'].'&delAdA='.$answer['id'];?>" onclick="return confirm('Вы действительно хотите удалить ответ <?=$answer['comment_text']; ?>?')">Удалить</a>
+                    <a class = "delJrc" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&adminQotvet='.$_GET['adminQotvet'].'&user='.$_GET['user'].'&delAdA='.$answer['id'].'&aAID='.$answer['answer_id'];?>" onclick="return confirm('Вы действительно хотите удалить ответ <?=$answer['comment_text']; ?>?')">Удалить</a>
                 </div>
                         
                     <?php 
@@ -132,16 +132,17 @@ else{
             <?php
             echo '</div>';
             ?>
-            
-            <div style= "display:none" class="questionBlock" id="block_<?=$id;?>">
+            <div style= "display:none" id="block_<?=$id;?>" class="questionAndAnswerBlock" >
+            <div  class="questionBlock">
                 <a class = "delete" href="#" onclick="return deleteQuestion(<?=$value['id'];?> ,'<?=getStrPart($value['question'],50)?>')"></a>
                 <p><?=nl2br( $value['question']);?></p>
+            </div>
                 <?php
                 if(is_array($value['answers'])){ 
                     foreach($value['answers'] as $answer){ 
                     // print_r($answer);
                     ?>
-                    <div class="jury_comments">
+                    <div class="jury_comments otvet">
                     <div class="jury_comments_name_date">
                         <div class="name">
                             Ответ
@@ -156,6 +157,7 @@ else{
                         <p><?= $answer['comment_text'];?></p>
 
                     </div>
+                    <a class = "delJrc" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&answer_id='.$answer['id'].'&aAID='.$answer['answer_id'].'&answer='.$_GET['answer']?>" onclick="return confirm('Вы действительно хотите удалить ответ <?=$answer['comment_text']; ?>?')">Удалить</a>
 
                 </div>
                         
@@ -165,7 +167,6 @@ else{
                 ?>
                 <p><a href="#" onclick = 'return hideBlock(<?=$id;?>)'>Свернуть</a></p>
             </div>
-
             <?php
             
 

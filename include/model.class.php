@@ -354,8 +354,10 @@ public function getAdminAnswer($id){
   return $result;
 
 }
-public function delAdminAnswer($id){
+public function delAdminAnswer($id,$answer_id){
   $query = "delete from admin_answer where id = ".$id."";
+  $sql = "UPDATE user_question set answer = 0 where id = ".$answer_id."";
+  $this->simpleQuery($sql);
   return $this->simpleQuery($query);
 }
 
@@ -363,9 +365,9 @@ public function delAdminQ($id){
   $query = "delete from user_question where id = ".$id."";
   return $this->simpleQuery($query);
 }
-/*
+
 public function addAdminAnswer($answer_id,$text,$user_id){
-  $query = "INSERT INTO  jury_comments  (`user_id`,`answer_id`,`comment_text`,`date_comment`) VALUES
+  $query = "INSERT INTO  admin_answer  (`user_id`,`answer_id`,`comment_text`,`date_comment`) VALUES
   ('".$user_id."','".$answer_id."','".$text."',NOW())";
   $id = $this->queryInsert($query,true);
   $sql = "UPDATE user_question set answer=1 where id = '".$answer_id."'";
@@ -377,12 +379,19 @@ public function addAdminAnswer($answer_id,$text,$user_id){
 
   }
 }
-  */
 public function updateContent($content){
   $sql = "UPDATE pages set content=? where id=1";
   $stmt = mysqli_prepare($this->db,$sql);
   mysqli_stmt_bind_param($stmt,"s",$content);
   mysqli_stmt_execute($stmt);
 }
+
+
+public function updateLoginData($user_id,$ip){
+  //update users set ip='".."' 
+  $query ="UPDATE users set date_last_login = NOW(), ip= '".$ip."' where id = ".$user_id."";
+  $this->simpleQuery($query);
 }
+}
+
 ?>

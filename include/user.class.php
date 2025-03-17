@@ -18,6 +18,7 @@ class User{
     $_SESSION['user']['username'] = $result['login'];
     $_SESSION['user']['login'] = true;
     $_SESSION['user']['role'] = $roles[$result['priv']];
+    $this->model->updateLoginData($_SESSION['user']['id'],$_SERVER['REMOTE_ADDR']);
 
     }
     return !$result;

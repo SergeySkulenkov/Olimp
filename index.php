@@ -7,10 +7,16 @@ $controller->checkLogin();
 //$model->createOimp("Новая олимпиада", "132124",1);
 //$res=$model->getOlimpList();
 if(isset($_POST['JuryAnswer'])){
-  $model->addJuryAnswer($_GET['user'],$_GET['otvet_id'],$_POST['JuryAnswer'],);// ответ на задание
+  $model->addJuryAnswer($_GET['user'],$_GET['otvet_id'],$_POST['JuryAnswer']);// ответ на задание
+}
+if(isset($_POST['adminAnswer'])){
+  $model->addAdminAnswer($_GET['adminQotvet'],$_POST['adminAnswer'],$_GET['user']);
 }
 if(isset($_GET['delJrc'])){
-  $model-> delJuryAnswer($_GET['delJrc']);
+  $model-> delJuryAnswer($_GET['delJrc'],$_GET['aAID']);
+}
+if(isset($_GET['answer_id'])){
+  $model-> delAdminAnswer($_GET['answer_id'],$_GET['aAID']);
 }
 if(isset($_GET['delAdA'])){
   $model-> delAdminAnswer($_GET['delAdA']);
