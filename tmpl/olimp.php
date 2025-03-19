@@ -38,7 +38,7 @@ if(is_array($page['content'])){
         ?>
         <div class="answerBlock">
             <div class="answerFile">
-                <div class="img"></div>
+                <div class="img olimp"></div>
                 <div class="fileName">
                     <div class="fileNameContainer">
                     <a  class="name" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&olimp_id='.$value['id'];?>"><?= $value['title'];?></a>
@@ -63,8 +63,8 @@ if(is_array($page['content'])){
         <?php
         }
         ?>
-        <div class="downloadButtonBlock">
-            <div class="ico"></div>
+        <div class="olimpButtonblock">
+            <div class=""></div>
             <button type="button" class="downloadButton" name="button">Добавить</button>
         </div>
         <?php

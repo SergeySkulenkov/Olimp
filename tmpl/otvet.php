@@ -61,7 +61,7 @@ if(isset($_GET['adminQotvet'])){
             <div class="fileName">
                 <div class="fileNameContainer">
                     <a  class="name" target="_blank" href="<?= $path;?>"><?= $page['content']['question'];?></a>
-                    <a class = "delete" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&del='.$page['content'][$_GET['adminQotvet']]['id'];?>" onclick="return confirm('Вы действительно хотите удалить вопрос <?= $page['content']['question'];?>?')"></a>
+                    <a class = "delete" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&del='.$page['content'][$_GET['adminQotvet']]['id'];?>" onclick="return confirm('Вы действительно хотите удалить вопрос <?php /*echo $page['content']['question'];*/?>?')"></a>
                     
                 </div>
 

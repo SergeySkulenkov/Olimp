@@ -10,7 +10,9 @@
 
     }
     function deleteQuestion(id, text){
-        confirm('Вы действительно хотите удалить вопрос "'+text+'"?');
+        let res = confirm('Вы действительно хотите удалить вопрос "'+text+'"?');
+        if(res == false)
+            return false;
         $.ajax({
             url: 'delete_question.php',
             method: 'get',
@@ -41,46 +43,51 @@ if(is_array($page['content'])){
     <?php
     foreach($page['content'] as $value){
         $id = $value['id'];
-        echo '<div class="smallQuestionText" id="questionText_'.$id.'">';
+        $status_class = "";
+        if($value['answer'] == 1){
+            $status_class = " answers";
+        }
+        echo '<div class="smallQuestionText'.$status_class.'" id="questionText_'.$id.'">';
         echo "<p style='display:block;' id='titleBlock_$id' onclick='showBlock($id)'> ". getStrPart($value['question'],100)." </p>";
         ?>
             <a class = "delete" href="#" onclick="return deleteQuestion(<?=$value['id'];?> ,'<?=getStrPart($value['question'],50)?>')"></a>
         <?php
         echo '</div>';
         ?>
-        
-        <div style= "display:none" class="questionBlock" id="block_<?=$id;?>">
-            <a class = "delete" href="#" onclick="return deleteQuestion(<?=$value['id'];?> ,'<?=getStrPart($value['question'],50)?>')"></a>
-            <p><?=nl2br( $value['question']);?></p>
-            <?php
-            if(is_array($value['answers'])){ 
-                foreach($value['answers'] as $answer){ 
-                // print_r($answer);
-                ?>
-                <div class="jury_comments">
-                <div class="jury_comments_name_date">
-                    <div class="name">
-                        Ответ
-
-                    </div>
-                    <div class="date">
-                    <?= toRuDate($answer['date_comment']);?>
-                    </div>
-
-                </div>
-                <div class="comment_text">
-                    <p><?= $answer['comment_text'];?></p>
-
-                </div>
-
+        <div style= "display:none" id="block_<?=$id;?>">
+            <div class="questionBlock<?=$status_class?>">
+                <a class = "delete" href="#" onclick="return deleteQuestion(<?=$value['id'];?> ,'<?=getStrPart($value['question'],50)?>')"></a>
+                <p><?=nl2br( $value['question']);?></p> 
             </div>
-                    
-                <?php 
+            <?php
+                if(is_array($value['answers'])){ 
+                    foreach($value['answers'] as $answer){ 
+                    //print_r($answer);
+                    ?>
+                    <div class="jury_comments otvet">
+                    <div class="jury_comments_name_date">
+                        <div class="name">
+                            Ответ
+
+                        </div>
+                        <div class="date">
+                        <?= toRuDate($answer['date_comment']);?>
+                        </div>
+
+                    </div>
+                    <div class="comment_text">
+                        <p><?= $answer['comment_text'];?></p>
+
+                    </div>
+
+                </div>
+                        
+                    <?php 
+                    }
                 }
-            }
-            ?>
-            <p><a href="#" onclick = 'return hideBlock(<?=$id;?>)'>Свернуть</a></p>
-        </div>
+                ?>
+                <p><a href="#" onclick = 'return hideBlock(<?=$id;?>)'>Свернуть</a></p>
+            </div>
 
         <?php
         

@@ -80,7 +80,9 @@ body{
 #adminOtvet .ico {
   background: #ffffff url('../images/zadat_vopros.png') no-repeat center center;
 }
-
+#olimp .ico {
+  background: #ffffff url('../images/olimpIco.png') no-repeat center center;
+}
 .menu a.active{
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -117,6 +119,11 @@ body{
   background: #213060 url('../images/zadat_vopros_active.png') no-repeat center center;
 
 }
+#olimp.active .ico{
+  background: #213060 url('../images/olimp_active.png') no-repeat center center;
+
+}
+
 
 
 
@@ -411,6 +418,9 @@ p.Error span {
     width:  67px;
     background: url('../images/download2.png') no-repeat left top;
 }
+.img.olimp{
+  background: url('../images/olimp.png') no-repeat left top;
+}
 
 .fileName{
     float: left;
@@ -469,6 +479,9 @@ a.delete{
   position: absolute;
   right: -35px;
   top: 0px;
+}
+.smallQuestionText.answers, .questionBlock.answers{
+  background-color: #d6f2bb;
 }
 .answerData{
     margin-top: 5px;
@@ -546,6 +559,13 @@ a.delete{
     float: left;
     margin-left: 0px;
     margin-right: 40px;
+}
+.olimpButtonblock{
+  width: 67px;
+  height: 80px;
+  float: left;
+  margin-left: 180px;
+  margin-right: 40px;
 }
 
 .window{
