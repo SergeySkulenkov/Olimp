@@ -866,3 +866,37 @@ textarea[name=editor]{
   color: #757474;
   font-size: 12pt;
 }
+
+
+@media (max-width: 1600px) {
+  .right{
+    width: 80%;
+  }
+  .left{
+    width:20%;
+  }
+}
+@media (max-width: 1200px) {
+  .right{
+    width: 70%;
+  }
+  .left{
+    width:30%;
+  }
+  
+
+}
+
+@media (max-width: 790px) {
+  
+  .left{
+    width:100px;
+  }
+  .menu .text, .menu .rightPartBg{
+    display: none;
+  }
+  .right{
+    width:80%;
+  }
+
+}

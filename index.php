@@ -13,13 +13,13 @@ if(isset($_POST['adminAnswer'])){
   $model->addAdminAnswer($_GET['adminQotvet'],$_POST['adminAnswer'],$_GET['user']);
 }
 if(isset($_GET['delJrc'])){
-  $model-> delJuryAnswer($_GET['delJrc'],$_GET['aAID']);
+  $model-> delJuryAnswer($_GET['delJrc']);
 }
 if(isset($_GET['answer_id'])){
   $model-> delAdminAnswer($_GET['answer_id'],$_GET['aAID']);
 }
 if(isset($_GET['delAdA'])){
-  $model-> delAdminAnswer($_GET['delAdA']);
+  $model-> delAdminAnswer($_GET['delAdA'],$_GET['aAID']);
 }
 if(isset($_GET['edit']) && $_GET['edit'] == 2){
   $model->updateContent($_POST["editor"]);

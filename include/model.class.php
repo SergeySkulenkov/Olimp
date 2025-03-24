@@ -355,10 +355,17 @@ public function getAdminAnswer($id){
 
 }
 public function delAdminAnswer($id,$answer_id){
-  $query = "delete from admin_answer where id = ".$id."";
-  $sql = "UPDATE user_question set answer = 0 where id = ".$answer_id."";
-  $this->simpleQuery($sql);
-  return $this->simpleQuery($query);
+  $query = "delete from admin_answer where id = ".$id;
+  $this->simpleQuery($query);
+  $query = "select count(id) from admin_answer where answer_id = ".$answer_id;
+  $res = $this->simpleQuery($query);
+  $row = mysqli_fetch_row($res);
+  $count = $row[0];
+  if($count == 0){
+    $sql = "UPDATE user_question set answer = 0 where id = ".$answer_id."";
+    $this->simpleQuery($sql);
+  }
+  return true;
 }
 
 public function delAdminQ($id){

@@ -126,8 +126,12 @@ else{
             }
             echo '<div class="smallQuestionText" id="questionText_'.$id.'">';
             echo "<p style='display:block;' id='titleBlock_$id' onclick='showBlock($id)'> ". getStrPart($value['question'],100)." </p>";
+            $get_answer = "";
+            if(isset($_GET['answer'])){
+                $get_answer = '&answer='.$_GET['answer'];
+            }
             ?>
-                <a class = "adminQotvet" href="<?= INDEX_PAGE.'?id='.$_GET['id'].'&adminQotvet='.$value['id'].'&user='.$user_id;?>"></a>
+                <a class = "adminQotvet" href="<?= INDEX_PAGE.'?id='.$_GET['id'].$get_answer.'&adminQotvet='.$value['id'].'&user='.$user_id;?>"></a>
                 <a class = "delete" href="#" onclick="return deleteQuestion(<?=$value['id'];?> ,'<?=getStrPart($value['question'],50)?>')"></a>
             <?php
             echo '</div>';
@@ -171,6 +175,10 @@ else{
             
 
         }
+    }else{
+        ?>
+        <p>Нет вопросов без ответа.</p>
+        <?php
     }
 }
 ?>
